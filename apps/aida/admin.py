@@ -1,37 +1,52 @@
 from django.contrib import admin
 
-from apps.aida.models.training.weight import WeightTraining
-from apps.aida.models.training.exercise.weight import WeightExercise
-from apps.aida.models.training.exercise.set import Set
+from apps.aida.models.training.workout import Workout
+from apps.aida.models.training.exercise import Exercise
+from apps.aida.models.training.set.cardio import CardioSet
+from apps.aida.models.training.set.weight import WeightSet
 
 
-class WeightExerciseInline(admin.TabularInline):
+class ExerciseInline(admin.TabularInline):
     can_delete = True
-    model = WeightExercise
+    model = Exercise
     extra = 0
 
 
-class SetInline(admin.TabularInline):
+class CardioSetInline(admin.TabularInline):
     can_delete = True
-    model = Set
+    model = CardioSet
     extra = 0
 
 
-@admin.register(WeightTraining)
-class WeightTrainingAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "exercised_on")
-    inlines = (WeightExerciseInline,)
+class WeightSetInline(admin.TabularInline):
+    can_delete = True
+    model = WeightSet
+    extra = 0
 
 
-@admin.register(WeightExercise)
-class WeightExerciseAdmin(admin.ModelAdmin):
-    list_display = ("name", "weight", "vest_weight")
-    inlines = (SetInline,)
+@admin.register(Workout)
+class WorkoutAdmin(admin.ModelAdmin):
+    list_display = ("name", "trained")
+    inlines = (ExerciseInline,)
 
 
-@admin.register(Set)
-class SetAdmin(admin.ModelAdmin):
-    list_display = ("name", "reps")
+@admin.register(Exercise)
+class ExerciseAdmin(admin.ModelAdmin):
+    list_display = ("name", "type", "vest_weight")
+    inlines = (CardioSetInline, WeightSetInline)
 
-    def name(self, obj):
+
+@admin.register(CardioSet)
+class CardioSetAdmin(admin.ModelAdmin):
+    list_display = ("exercise", "speed", "duration")
+
+    def exercise(self, obj):
+        return obj.exercise.name
+
+
+@admin.register(WeightSet)
+class WeightSetAdmin(admin.ModelAdmin):
+    list_display = ("exercise", "weight", "reps")
+
+    def exercise(self, obj):
         return obj.exercise.name
