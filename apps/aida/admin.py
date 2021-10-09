@@ -26,14 +26,30 @@ class WeightSetInline(admin.TabularInline):
 
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
-    list_display = ("name", "trained")
+    list_display = ("type", "trained")
     inlines = (ExerciseInline,)
 
 
 @admin.register(Exercise)
 class ExerciseAdmin(admin.ModelAdmin):
-    list_display = ("name", "type", "vest_weight")
+    list_display = ("name", "type", "vest_weight", "total")
     inlines = (CardioSetInline, WeightSetInline)
+
+    def total(self, obj):
+        sets = obj.weightset_set.all()
+        if sets:
+            reps = 0
+            for set_ in sets:
+                reps += set_.reps
+            return f"{reps} reps"
+        sets = obj.cardioset_set.all()
+        if sets:
+            time_unit = sets[0].time_unit
+            duration = 0
+            for set_ in sets:
+                duration += set_.duration
+            return f"{duration} {time_unit}"
+        return "Undefined"
 
 
 @admin.register(CardioSet)

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List Workouts</h1>
+    {% for workout in workouts %}
+        <p>Type: {{ workout.type|title }}</p>
+        <p>Trained: {{ workout.trained }}</p>
+    {% endfor %}
+{% endblock %}
