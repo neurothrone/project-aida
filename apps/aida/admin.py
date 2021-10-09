@@ -38,7 +38,7 @@ class ExerciseAdmin(admin.ModelAdmin):
 
 @admin.register(CardioSet)
 class CardioSetAdmin(admin.ModelAdmin):
-    list_display = ("exercise", "speed", "duration")
+    list_display = ("exercise", "speed", "duration", "time_unit")
 
     def exercise(self, obj):
         return obj.exercise.name
@@ -46,7 +46,7 @@ class CardioSetAdmin(admin.ModelAdmin):
 
 @admin.register(WeightSet)
 class WeightSetAdmin(admin.ModelAdmin):
-    list_display = ("exercise", "weight", "reps")
+    list_display = ("exercise", "reps", "weight", "weight_unit")
 
     def exercise(self, obj):
         return obj.exercise.name

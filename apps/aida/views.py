@@ -4,6 +4,9 @@ from django.http import HttpRequest
 from django.views import View
 
 
+from apps.aida.models.training.workout import Workout
+
+
 class IndexView(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
