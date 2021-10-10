@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Create Workout</h1>
+    <h1>Create Exercise</h1>
     <form action="" method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -10,6 +10,6 @@
                 {{ field }}
             </div>
         {% endfor %}
-        <button class="btn btn-success" type="submit">Create Workout</button>
+    <button class="btn btn-success" type="submit">Create Exercise</button>
     </form>
 {% endblock %}

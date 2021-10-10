@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # custom apps
+    "apps.main.apps.MainConfig",
     "apps.aida.apps.AidaConfig",
 ]
 

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Detail Exercise</h1>
+    <p>ID: {{ exercise.id }}</p>
+    <p>Type: {{ exercise.type }}</p>
+    <p>Name: {{ exercise.name }}</p>
+    <p>Vest Weight: {{ exercise.vest_weight }}</p>
+
+    {% if exercise.type == "cardio" %}
+        {% for set in exercise.cardioset_set.all %}
+            <p>Speed: {{ set.speed }}</p>
+            <p>Duration: {{ set.duration }} {{ set.time_unit }}</p>
+            <hr>
+        {% endfor %}
+    {% elif exercise.type == "weight" %}
+        {% for set in exercise.weightset_set.all %}
+            <p>Reps: {{ set.reps }}</p>
+            <p>Weight: {{ set.weight }} {{ set.weight_unit }}</p>
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

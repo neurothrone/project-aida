@@ -2,4 +2,14 @@
 
 {% block content %}
     <h1>Detail Workout</h1>
+    <p>ID: {{ workout.id }}</p>
+    <p>Type: {{ workout.type }}</p>
+    <p>Trained: {{ workout.trained }}</p>
+    {% if workout.exercise_set.all %}
+        <hr>
+        <h3>Exercises</h3>
+    {% endif %}
+    {% for exercise in workout.exercise_set.all %}
+        <p><a href="{% url 'aida:exercise-detail' pk=exercise.id %}">{{ exercise.name }}</a></p>
+    {% endfor %}
 {% endblock %}

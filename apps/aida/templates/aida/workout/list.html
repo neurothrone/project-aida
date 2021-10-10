@@ -2,8 +2,28 @@
 
 {% block content %}
     <h1>List Workouts</h1>
-    {% for workout in workouts %}
-        <p>Type: {{ workout.type|title }}</p>
-        <p>Trained: {{ workout.trained }}</p>
-    {% endfor %}
+    {% if workouts %}
+        <table>
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Trained</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout.type|title }}</td>
+                    <td>{{ workout.trained }}</td>
+                    <td>
+                        <a href="{% url 'aida:workout-detail' pk=workout.id %}">View</a>
+                        <a href="{% url 'aida:workout-update' pk=workout.id %}">Edit</a>
+                        <a href="{% url 'aida:workout-delete' pk=workout.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

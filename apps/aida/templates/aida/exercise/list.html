@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List Exercises</h1>
+    {% for exercise in exercises %}
+        <p>Id: <a href="{% url 'aida:exercise-detail' pk=exercise.id %}">Detail</a></p>
+        <p>Type: {{ exercise.type|title }}</p>
+        <p>Name: {{ exercise.name }}</p>
+        <p>Vest Weight: {{ exercise.vest_weight }} kg</p>
+        <hr>
+    {% endfor %}
+{% endblock %}

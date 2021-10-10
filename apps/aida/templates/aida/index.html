@@ -2,4 +2,8 @@
 
 {% block content %}
     <h1>AIDA coming soon.</h1>
+    <ul>
+        <li><a href="{% url 'aida:workout-list' %}">Workout List</a></li>
+        <li><a href="{% url 'aida:workout-create' %}">Workout Create</a></li>
+    </ul>
 {% endblock %}

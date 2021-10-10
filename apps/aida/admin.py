@@ -29,12 +29,14 @@ class WeightSetInline(admin.TabularInline):
 class WorkoutAdmin(admin.ModelAdmin):
     list_display = ("type", "trained")
     inlines = (ExerciseInline,)
+    list_filter = ("type", "trained")
 
 
 @admin.register(Exercise)
 class ExerciseAdmin(admin.ModelAdmin):
     list_display = ("name", "type", "vest_weight", "total")
     inlines = (CardioSetInline, WeightSetInline)
+    search_fields = ("name",)
 
     def total(self, obj):
         sets = obj.weightset_set.all()
