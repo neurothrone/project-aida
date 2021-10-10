@@ -19,5 +19,8 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("apps.aida.urls")),
+
+    # custom
+    path("", include("apps.main.urls")),
+    path("aida/", include("apps.aida.urls")),
 ]

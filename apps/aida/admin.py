@@ -1,7 +1,8 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
-from apps.aida.models.training.workout import Workout
 from apps.aida.models.training.exercise import Exercise
+from apps.aida.models.training.workout import Workout
 from apps.aida.models.training.set.cardio import CardioSet
 from apps.aida.models.training.set.weight import WeightSet
 
@@ -41,14 +42,14 @@ class ExerciseAdmin(admin.ModelAdmin):
             reps = 0
             for set_ in sets:
                 reps += set_.reps
-            return f"{reps} reps"
+            return format_html("<b>{}</b> reps", reps)
         sets = obj.cardioset_set.all()
         if sets:
             time_unit = sets[0].time_unit
             duration = 0
             for set_ in sets:
                 duration += set_.duration
-            return f"{duration} {time_unit}"
+            return format_html("<b>{}</b> {}", duration, time_unit)
         return "Undefined"
 
 

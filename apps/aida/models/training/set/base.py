@@ -11,3 +11,7 @@ class Set(models.Model):
 
     class Meta:
         abstract = True
+
+    # TODO: abstract methods
+    # to_json()
+    # from_json()
