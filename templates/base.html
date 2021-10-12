@@ -1,23 +1,22 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="robots" content="noindex"/>
+    <meta name="author" content="Zaid Neurothrone">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{% else %}AIDA{% endif %}</title>
     <!-- Brand icon -->
-    <link rel="icon" href="{% static 'img/zane_app_icon.png' %}">
-    <!-- Bootstrap Core CSS -->
+    <link rel="icon" href="{% static 'img/zn_logo_purple_bg.svg' %}">
+    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="{% static 'bootstrap/webfonts/bootstrap-icons.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>{% if title %}{% else %}AIDA{% endif %}</title>
-    <link rel="stylesheet" href="">
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 bg-body-dark">
 <!-- HEADER -->
 {% include "header.html" %}
 
@@ -26,7 +25,7 @@
 
 <!-- CONTENT -->
 <main>
-    <div class="container my-4">
+    <div class="container-xl my-4">
         {% block content %}{% endblock %}
     </div>
 </main>
@@ -35,7 +34,7 @@
 {% include "footer.html" %}
 
 <!-- SCRIPTS -->
-<!-- Bootstrap Core JS -->
+<!-- Bootstrap core JS -->
 <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- Custom JS -->
 <script src="{% static 'js/base.js' %}"></script>

@@ -28,10 +28,3 @@ urlpatterns = [
     path("exercise/update/<str:pk>/", ExerciseUpdateView.as_view(), name="exercise-update"),
     path("exercise/delete/<str:pk>/", ExerciseDeleteView.as_view(), name="exercise-delete"),
 ]
-
-
-# TODO:
-# - Create Workout -> Go to Workout Detail
-# - Add Exercise -> Add Set
-
-# Table layout with Edit, Update, Delete

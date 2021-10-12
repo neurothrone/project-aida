@@ -1,3 +1,73 @@
+/*
+    Global variables
+*/
+:root {
+    /* Website Colors */
+    --site-main-theme-dark-color-primary: #202126;
+    --site-main-theme-dark-color-secondary: #00564c;
+
+    --site-main-theme-light-color-primary: #002c27;
+    --site-main-theme-light-color-secondary: #00564c;
+}
+
+.bg-site-dark {
+    background-color: var(--site-main-theme-dark-color-primary) !important;
+    color: #fff !important;
+}
+
+.bg-site-light {
+    background-color: var(--site-main-theme-light-color-primary) !important;
+}
+
+.bg-body-dark {
+    background-color: peru;
+}
+
+/*
+    BODY
+*/
 body {
-    background-color: burlywood;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* necessary since we are using a sticky navbar */
+    padding-top: 8rem;
+}
+
+/*
+    HEADER
+*/
+.site-header-vr {
+    color: #fff !important;
+    visibility: hidden;
+}
+
+.site-header-btn {
+    color: mediumpurple !important;
+}
+
+.site-header-link:hover {
+    font-weight: bolder;
+}
+
+/*
+    FOOTER
+*/
+.footer-heart {
+    color: #fff !important;
+}
+
+/* TODO: animate heart on hover */
+.footer-heart:hover {
+    color: mediumpurple !important;
+}
+
+/*
+    MEDIA RULES
+*/
+@media screen and (min-width: 992px) {
+    .site-header-vr {
+        visibility: visible;
+    }
 }

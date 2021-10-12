@@ -1,8 +1,99 @@
+{% load static %}
 <header>
-    <nav class="navbar navbar-dark bg-dark">
-        <ul>
-            <li><a href="{% url 'main:index' %}">Index</a></li>
-            <li><a href="{% url 'aida:index' %}">AIDA</a></li>
-        </ul>
-    </nav>
+    <div class="fixed-top">
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-expand-lg bg-site-dark text-light">
+            <div class="container-xl">
+                <div class="navbar-nav me-auto">
+                    <ul class="list-inline mb-0 py-1 justify-content-center mb-md-0">
+                        <li class="list-inline-item">
+                            <a class="text-reset text-light" href="https://github.com/neurothrone">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-reset" href="https://www.linkedin.com/in/neurothrone/">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-reset" href="https://www.facebook.com/neurothrone/">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-reset" href="https://twitter.com/neurothrone">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-reset" href="#">
+                                <i class="bi bi-globe"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn text-light p-0" type="button"><i class="bi bi-brightness-high-fill"></i></button>
+            </div>
+        </nav>
+
+        <div class="border-bottom"></div>
+
+        <!-- Bottom Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-site-dark mb-4">
+            <div class="container-xl">
+                <a class="navbar-brand d-flex align-items-center"
+                   href="#">
+                    <img src="{% static 'img/zn_logo_purple_bg.svg' %}" alt="logo of company" width="64px">
+                    <span class="fs-4">Neurothrone</span>
+                </a>
+                <div>
+                    <div class="collapse navbar-collapse" id="collapsableNavbar">
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0l">
+                            <li><a class="nav-link text-light site-header-link"
+                                   href="{% url 'main:index' %}">Home</a></li>
+                            <li><a class="nav-link text-light site-header-link"
+                                   href="{% url 'aida:index' %}">AIDA</a></li>
+                            <li><a class="nav-link site-header-link disabled"
+                                   href="#">Dashboard</a></li>
+                        </ul>
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                            <div class="vr site-header-vr text-light"></div>
+
+                            {% if request.user.is_authenticated %}
+                                <div class="text-end ms-3">
+                                    <div class="flex-shrink-0 dropdown">
+                                        <a class="d-block link-dark text-decoration-none dropdown-toggle" href="#"
+                                           id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img class="rounded-circle"
+                                                 src="https://avatars.githubusercontent.com/u/54468049?v=4"
+                                                 alt="user profile image" width="32" height="32">
+                                        </a>
+                                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="text-end ms-3">
+                                    <button class="btn btn-outline-primary me-2" type="button">Login</button>
+                                    <button class="btn btn-primary" type="button">Sign-up</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapsableNavbar"
+                        aria-controls="collapsableNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </div>
 </header>

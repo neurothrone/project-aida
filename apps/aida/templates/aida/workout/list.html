@@ -3,7 +3,7 @@
 {% block content %}
     <h1>List Workouts</h1>
     {% if workouts %}
-        <table>
+        <table class="table table-dark table-striped">
             <thead>
             <tr>
                 <th>Type</th>
@@ -17,9 +17,15 @@
                     <td>{{ workout.type|title }}</td>
                     <td>{{ workout.trained }}</td>
                     <td>
-                        <a href="{% url 'aida:workout-detail' pk=workout.id %}">View</a>
-                        <a href="{% url 'aida:workout-update' pk=workout.id %}">Edit</a>
-                        <a href="{% url 'aida:workout-delete' pk=workout.id %}">Delete</a>
+                        <a class="btn btn-outline-info"
+                           href="{% url 'aida:workout-detail' pk=workout.id %}">
+                            <i class="bi bi-eye"></i>&nbsp;View</a>
+                        <a class="btn btn-outline-warning"
+                           href="{% url 'aida:workout-update' pk=workout.id %}">
+                            <i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                        <a class="btn btn-outline-danger"
+                           href="{% url 'aida:workout-delete' pk=workout.id %}">
+                            <i class="bi bi-trash"></i>&nbsp;Delete</a>
                     </td>
                 </tr>
             {% endfor %}
