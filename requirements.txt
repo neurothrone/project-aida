@@ -1,1 +1,5 @@
 django==3.2.8
+django-cors-headers==3.10.0
+djangorestframework==3.12.4
+djangorestframework-simplejwt=4.8.0
+python-dotenv==0.19.1
