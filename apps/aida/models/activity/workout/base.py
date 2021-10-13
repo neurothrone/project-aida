@@ -10,10 +10,10 @@ WORKOUT_TYPES = [
 
 class Workout(Activity):
     type = models.CharField(choices=WORKOUT_TYPES, max_length=255, blank=True, null=True)
-    trained = models.DateTimeField(blank=True, null=True)
+    trained_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.type.title()} | {self.trained.date()}"
+        return f"{self.type.title()} | {self.trained_at.date()}"
 
     class Meta:
         ordering = ("-trained",)

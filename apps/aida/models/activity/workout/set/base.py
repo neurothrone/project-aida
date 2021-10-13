@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.aida.models.activity.training.exercise import Exercise
+from apps.aida.models.activity.workout.exercise import Exercise
 
 
 # TODO: inherit BaseModel
@@ -13,6 +13,3 @@ class Set(models.Model):
     class Meta:
         abstract = True
 
-    # TODO: abstract methods
-    # to_json()
-    # from_json()
