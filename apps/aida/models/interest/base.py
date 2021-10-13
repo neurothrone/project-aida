@@ -4,4 +4,5 @@ from shared.models.base import BaseModel
 
 
 class Interest(BaseModel):
-    pass
+    class Meta:
+        abstract = True
