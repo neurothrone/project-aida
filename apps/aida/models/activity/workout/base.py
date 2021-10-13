@@ -16,4 +16,4 @@ class Workout(Activity):
         return f"{self.type.title()} | {self.trained_at.date()}"
 
     class Meta:
-        ordering = ("-trained",)
+        ordering = ("-trained_at",)
