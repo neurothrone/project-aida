@@ -6,8 +6,8 @@ from django.shortcuts import render
 from django.views import View
 
 from apps.aida.forms.exercise import ExerciseForm
+from apps.aida.models.activity.workout.base import Workout
 from apps.aida.models.activity.workout.exercise import Exercise
-from apps.aida.models.activity.workout import Workout
 
 
 class ExerciseListView(View):

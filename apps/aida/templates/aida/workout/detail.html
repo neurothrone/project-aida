@@ -4,7 +4,7 @@
     <h1>Detail Workout</h1>
     <p>ID: {{ workout.id }}</p>
     <p>Type: {{ workout.type }}</p>
-    <p>Trained: {{ workout.trained }}</p>
+    <p>Trained: {{ workout.trained_at }}</p>
     {% if workout.exercise_set.all %}
         <hr>
         <h3>Exercises</h3>
