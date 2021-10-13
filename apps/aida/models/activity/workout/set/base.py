@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.aida.models.training.exercise import Exercise
+from apps.aida.models.activity.training.exercise import Exercise
 
 
 # TODO: inherit BaseModel

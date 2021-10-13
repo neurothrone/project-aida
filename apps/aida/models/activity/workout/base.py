@@ -1,6 +1,6 @@
 from django.db import models
 
-from shared.models.base import BaseModel
+from ..base import Activity
 
 WORKOUT_TYPES = [
     ("cardio", "Cardio Workout"),
@@ -8,7 +8,7 @@ WORKOUT_TYPES = [
 ]
 
 
-class Workout(BaseModel):
+class Workout(Activity):
     type = models.CharField(choices=WORKOUT_TYPES, max_length=255, blank=True, null=True)
     trained = models.DateTimeField(blank=True, null=True)
 
