@@ -4,12 +4,12 @@ from apps.aida.models.activity.workout.base import Workout
 
 
 class WorkoutForm(forms.ModelForm):
-    trained_at = forms.DateTimeField(input_formats=["%d/%m/%Y %H:%M"],
-                                     widget=forms.DateTimeInput(format="%d/%m/%Y %H:%M"))
+    engaged_at = forms.DateTimeField(input_formats=["%Y-%m-%d %H:%M"],
+                                     widget=forms.DateTimeInput(format="%Y-%m-%d %H:%M"))
 
     class Meta:
         model = Workout
-        fields = ("type", "trained_at")
+        fields = ("type", "engaged_at")
         labels = {
             "type": "Workout Type",
         }
