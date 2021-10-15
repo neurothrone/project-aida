@@ -6,8 +6,8 @@ from django.shortcuts import render
 from django.views import View
 
 from apps.aida.forms.exercise import ExerciseForm
-from apps.aida.models.activity.workout.base import Workout
-from apps.aida.models.activity.workout.exercise import Exercise
+from apps.aida.models.activity.workout import Workout
+from apps.aida.models.activity.exercise import Exercise
 
 
 class ExerciseListView(View):
@@ -21,20 +21,20 @@ class ExerciseListView(View):
 
 class ExerciseCreateView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
             "form": ExerciseForm(),
             "text": "Create Exercise",
-            "workout": Workout.objects.filter(id=pk).first()
+            "workout": Workout.find_by_id(pk),
         }
         return render(request, "aida/form.html", context)
 
     @staticmethod
-    def post(request: HttpRequest, pk: str) -> HttpResponse:
+    def post(request: HttpRequest, pk: int) -> HttpResponse:
         form = ExerciseForm(request.POST)
         if form.is_valid():
             exercise = form.save(commit=False)
-            workout = Workout.objects.filter(id=pk).first()
+            workout = Workout.find_by_id(pk)
             exercise.workout = workout
             messages.success(request, "Exercise created.")
             return redirect("main:index")
@@ -48,17 +48,17 @@ class ExerciseCreateView(View):
 
 class ExerciseDetailView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
-            "exercise": Exercise.objects.filter(id=pk).first()
+            "exercise": Exercise.find_by_id(pk)
         }
         return render(request, "aida/exercise/detail.html", context)
 
 
 class ExerciseUpdateView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
-        exercise = Exercise.objects.filter(id=pk).first()
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
+        exercise = Exercise.find_by_id(pk)
         context = {
             "form": ExerciseForm(instance=exercise),
             "text": "Update Exercise",
@@ -66,8 +66,8 @@ class ExerciseUpdateView(View):
         return render(request, "aida/form.html", context)
 
     @staticmethod
-    def post(request: HttpRequest, pk: str) -> HttpResponse:
-        exercise = Exercise.objects.filter(id=pk).first()
+    def post(request: HttpRequest, pk: int) -> HttpResponse:
+        exercise = Exercise.find_by_id(pk)
         form = ExerciseForm(request.POST, instance=exercise)
         if form.is_valid():
             exercise = form.save()
@@ -83,8 +83,8 @@ class ExerciseUpdateView(View):
 
 class ExerciseDeleteView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
-            "exercise": Exercise.objects.filter(id=pk).first(),
+            "exercise": Exercise.find_by_id(pk),
         }
         return render(request, "aida/delete.html", context)

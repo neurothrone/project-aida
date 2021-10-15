@@ -8,7 +8,7 @@ class BaseModel(models.Model):
     id = models.BigAutoField(primary_key=True, editable=False, unique=True)
     # uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(editable=False)
-    updated_at = models.DateTimeField()
+    updated_at = models.DateTimeField(editable=False)
 
     class Meta:
         abstract = True

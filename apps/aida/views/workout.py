@@ -6,13 +6,13 @@ from django.shortcuts import render
 from django.views import View
 
 from apps.aida.forms.workout import WorkoutForm
-from apps.aida.models.activity.workout.base import Workout
+from apps.aida.models.activity.workout import Workout
 
 
 class WorkoutListView(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
-        workouts = Workout.objects.all()
+        workouts = Workout.find_all()
         context = {
             "workouts": workouts
         }
@@ -46,17 +46,17 @@ class WorkoutCreateView(View):
 
 class WorkoutDetailView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
-            "workout": Workout.objects.filter(id=pk).first()
+            "workout": Workout.find_by_id(pk),
         }
         return render(request, "aida/workout/detail.html", context)
 
 
 class WorkoutUpdateView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
-        workout = Workout.objects.filter(id=pk).first()
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
+        workout = Workout.find_by_id(pk)
         form = WorkoutForm(instance=workout)
         context = {
             "form": form,
@@ -65,8 +65,8 @@ class WorkoutUpdateView(View):
         return render(request, "aida/form.html", context)
 
     @staticmethod
-    def post(request: HttpRequest, pk: str) -> HttpResponse:
-        workout = Workout.objects.filter(id=pk).first()
+    def post(request: HttpRequest, pk: int) -> HttpResponse:
+        workout = Workout.find_by_id(pk)
         form = WorkoutForm(request.POST, instance=workout)
         if form.is_valid():
             form.save()
@@ -82,8 +82,8 @@ class WorkoutUpdateView(View):
 
 class WorkoutDeleteView(View):
     @staticmethod
-    def get(request: HttpRequest, pk: str) -> HttpResponse:
-        workout = Workout.objects.filter(id=pk).first()
+    def get(request: HttpRequest, pk: int) -> HttpResponse:
+        workout = Workout.find_by_id(pk)
         context = {
             "object": f"{workout.type.title()} workout",
             "text": "Delete workout",
@@ -91,8 +91,8 @@ class WorkoutDeleteView(View):
         return render(request, "aida/delete.html", context)
 
     @staticmethod
-    def post(request: HttpRequest, pk: str) -> HttpResponse:
-        workout = Workout.objects.filter(id=pk).first()
+    def post(request: HttpRequest, pk: int) -> HttpResponse:
+        workout = Workout.find_by_id(pk)
         if workout:
             workout.delete()
             messages.success(request, "Workout deleted.")
