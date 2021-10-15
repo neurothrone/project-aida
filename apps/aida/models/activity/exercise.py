@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.aida.models.activity.workout.base import Workout
+from apps.aida.models.activity.workout import Workout
 
 
 EXERCISE_TYPES = [

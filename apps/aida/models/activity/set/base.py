@@ -1,10 +1,11 @@
 from django.db import models
 
-from apps.aida.models.activity.workout.exercise import Exercise
+from shared.models.base import BaseModel
+from apps.aida.models.activity.exercise import Exercise
 
 
 # TODO: inherit BaseModel
-class Set(models.Model):
+class Set(BaseModel):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

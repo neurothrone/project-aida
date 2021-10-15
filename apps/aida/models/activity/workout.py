@@ -3,7 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.utils.timezone import make_aware
 
-from ..base import Activity
+from apps.aida.models.activity.base import Activity
 
 WORKOUT_TYPES = [
     ("cardio", "Cardio Workout"),
