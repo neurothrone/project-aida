@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.aida.models.activity.workout.base import Workout
+from apps.aida.models.activity.workout import Workout
 
 
 class WorkoutForm(forms.ModelForm):
