@@ -16,7 +16,7 @@
             {% for workout in workouts %}
                 <tr>
                     <td>{{ workout.type|title }}</td>
-                    <td>{{ workout.trained_at }}</td>
+                    <td>{{ workout.engaged_at }}</td>
                     <td>
                         <a class="btn btn-outline-info"
                            href="{% url 'aida:workout-detail' pk=workout.id %}">
