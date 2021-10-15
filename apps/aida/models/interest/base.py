@@ -4,5 +4,7 @@ from shared.models.base import BaseModel
 
 
 class Interest(BaseModel):
+    finished_at = models.DateTimeField()
+
     class Meta:
         abstract = True
