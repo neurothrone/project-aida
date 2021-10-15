@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from apps.aida.models.activity.workout.exercise import Exercise
-from apps.aida.models.activity.workout.set.cardio import CardioSet
-from apps.aida.models.activity.workout.set.weight import WeightSet
+from apps.aida.models.activity.exercise import Exercise
+from apps.aida.models.activity.set.cardio import CardioSet
+from apps.aida.models.activity.set.weight import WeightSet
 
 
 class ExerciseInline(admin.TabularInline):

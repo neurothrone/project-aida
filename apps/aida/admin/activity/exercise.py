@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from apps.aida.admin.activity.workout.inlines import CardioSetInline
-from apps.aida.admin.activity.workout.inlines import WeightSetInline
-from apps.aida.models.activity.workout.exercise import Exercise
+from apps.aida.admin.activity.inlines import CardioSetInline
+from apps.aida.admin.activity.inlines import WeightSetInline
+from apps.aida.models.activity.exercise import Exercise
 
 
 @admin.register(Exercise)

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from apps.aida.models.activity.workout.set.cardio import CardioSet
-from apps.aida.models.activity.workout.set.weight import WeightSet
+from apps.aida.models.activity.set.cardio import CardioSet
+from apps.aida.models.activity.set.weight import WeightSet
 
 
 @admin.register(CardioSet)
