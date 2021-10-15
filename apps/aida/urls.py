@@ -18,13 +18,13 @@ urlpatterns = [
 
     path("workout/list/", WorkoutListView.as_view(), name="workout-list"),
     path("workout/create/", WorkoutCreateView.as_view(), name="workout-create"),
-    path("workout/detail/<str:pk>/", WorkoutDetailView.as_view(), name="workout-detail"),
-    path("workout/update/<str:pk>/", WorkoutUpdateView.as_view(), name="workout-update"),
-    path("workout/delete/<str:pk>/", WorkoutDeleteView.as_view(), name="workout-delete"),
+    path("workout/detail/<int:pk>/", WorkoutDetailView.as_view(), name="workout-detail"),
+    path("workout/update/<int:pk>/", WorkoutUpdateView.as_view(), name="workout-update"),
+    path("workout/delete/<int:pk>/", WorkoutDeleteView.as_view(), name="workout-delete"),
 
     path("exercise/list/", ExerciseListView.as_view(), name="exercise-list"),
-    path("exercise/create/<str:pk>/", ExerciseCreateView.as_view(), name="exercise-create"),
-    path("exercise/detail/<str:pk>/", ExerciseDetailView.as_view(), name="exercise-detail"),
-    path("exercise/update/<str:pk>/", ExerciseUpdateView.as_view(), name="exercise-update"),
-    path("exercise/delete/<str:pk>/", ExerciseDeleteView.as_view(), name="exercise-delete"),
+    path("exercise/create/<int:pk>/", ExerciseCreateView.as_view(), name="exercise-create"),
+    path("exercise/detail/<int:pk>/", ExerciseDetailView.as_view(), name="exercise-detail"),
+    path("exercise/update/<int:pk>/", ExerciseUpdateView.as_view(), name="exercise-update"),
+    path("exercise/delete/<int:pk>/", ExerciseDeleteView.as_view(), name="exercise-delete"),
 ]
