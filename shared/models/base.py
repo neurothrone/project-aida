@@ -1,4 +1,4 @@
-# import uuid
+from abc import abstractmethod
 
 from django.db import models
 from django.utils import timezone
@@ -6,15 +6,18 @@ from django.utils import timezone
 
 class BaseModel(models.Model):
     id = models.BigAutoField(primary_key=True, editable=False, unique=True)
-    # uid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    created_at = models.DateTimeField(editable=False)
-    updated_at = models.DateTimeField(editable=False)
+    created_at = models.DateTimeField(editable=False, blank=True, null=True)
+    updated_at = models.DateTimeField(editable=False, blank=True, null=True)
 
     class Meta:
         abstract = True
 
+    @abstractmethod
+    def __str__(self) -> str:
+        raise NotImplementedError()
+
     def save(self, *args, **kwargs):
-        """Set created_at only once and updated_at each time object is modified."""
+        """The field created_at is set only once and updated_at each time the object is modified."""
         if not self.id:
             self.created_at = timezone.now()
         self.updated_at = timezone.now()
