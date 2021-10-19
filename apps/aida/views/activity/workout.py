@@ -9,7 +9,7 @@ from apps.aida.forms.workout import WorkoutForm
 from apps.aida.models.activity.workout import Workout
 
 
-class WorkoutListView(View):
+class List(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
         workouts = Workout.find_all()
@@ -19,7 +19,7 @@ class WorkoutListView(View):
         return render(request, "aida/workout/list.html", context)
 
 
-class WorkoutCreateView(View):
+class Create(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
         form = WorkoutForm()
@@ -44,7 +44,7 @@ class WorkoutCreateView(View):
         return render(request, "aida/form.html", context)
 
 
-class WorkoutDetailView(View):
+class Detail(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
@@ -53,7 +53,7 @@ class WorkoutDetailView(View):
         return render(request, "aida/workout/detail.html", context)
 
 
-class WorkoutUpdateView(View):
+class Update(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         workout = Workout.find_by_id(pk)
@@ -80,7 +80,7 @@ class WorkoutUpdateView(View):
         return render(request, "aida/form.html", context)
 
 
-class WorkoutDeleteView(View):
+class Delete(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         workout = Workout.find_by_id(pk)

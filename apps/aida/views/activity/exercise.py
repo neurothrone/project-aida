@@ -6,11 +6,11 @@ from django.shortcuts import render
 from django.views import View
 
 from apps.aida.forms.exercise import ExerciseForm
-from apps.aida.models.activity.workout import Workout
 from apps.aida.models.activity.exercise import Exercise
+from apps.aida.models.activity.workout import Workout
 
 
-class ExerciseListView(View):
+class List(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
         context = {
@@ -19,7 +19,7 @@ class ExerciseListView(View):
         return render(request, "aida/exercise/list.html", context)
 
 
-class ExerciseCreateView(View):
+class Create(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
@@ -46,7 +46,7 @@ class ExerciseCreateView(View):
         return render(request, "aida/form.html", context)
 
 
-class ExerciseDetailView(View):
+class Detail(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
@@ -55,7 +55,7 @@ class ExerciseDetailView(View):
         return render(request, "aida/exercise/detail.html", context)
 
 
-class ExerciseUpdateView(View):
+class Update(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         exercise = Exercise.find_by_id(pk)
@@ -81,7 +81,7 @@ class ExerciseUpdateView(View):
         return render(request, "aida/form.html", context)
 
 
-class ExerciseDeleteView(View):
+class Delete(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         context = {
