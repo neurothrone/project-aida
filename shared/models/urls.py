@@ -10,11 +10,6 @@ class ViewUrlsMixin(models.Model):
 
     @property
     @abstractmethod
-    def create_url(self) -> str:
-        raise NotImplementedError()
-
-    @property
-    @abstractmethod
     def detail_url(self) -> str:
         raise NotImplementedError()
 
@@ -27,10 +22,6 @@ class ViewUrlsMixin(models.Model):
     @abstractmethod
     def delete_url(self) -> str:
         raise NotImplementedError()
-
-    def get_create_url(self):
-        """Returns the url to create a record for this object."""
-        return reverse(self.create_url, args=[str(self.id)])
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this object."""
