@@ -21,7 +21,7 @@ class Create(generic.CreateView):
     model = Workout
     context_object_name = "workout"
     queryset = Workout.find_all()
-    template_name = "aida/generic_form.html"
+    template_name = "aida/generic/form.html"
     fields = ("type", "engaged_at",)
 
     def form_valid(self, form):
@@ -42,7 +42,7 @@ class Detail(generic.DetailView):
 class Update(generic.UpdateView):
     model = Workout
     context_object_name = "workout"
-    template_name = "aida/generic_form.html"
+    template_name = "aida/generic/form.html"
     fields = ("type", "engaged_at")
     success_url = reverse_lazy("aida:workout-list")
 
@@ -63,7 +63,7 @@ class Delete(View):
             "object": workout,
             "type": "workout",
         }
-        return render(request, "aida/generic_delete.html", context)
+        return render(request, "aida/generic/delete.html", context)
 
     @staticmethod
     def post(request: HttpRequest, pk: int) -> HttpResponse:
@@ -77,4 +77,4 @@ class Delete(View):
             "type": "workout",
         }
         messages.error(request, "Failed to delete Workout.")
-        return render(request, "aida/generic_delete.html", context)
+        return render(request, "aida/generic/delete.html", context)

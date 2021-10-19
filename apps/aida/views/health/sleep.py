@@ -28,7 +28,7 @@ class Create(generic.CreateView):
     model = Sleep
     context_object_name = "sleep"
     queryset = Sleep.find_all()
-    template_name = "aida/generic_form.html"
+    template_name = "aida/generic/form.html"
     fields = ("slept_at", "awoke_at")
 
     def form_valid(self, form):
@@ -49,7 +49,7 @@ class Detail(generic.DetailView):
 class Update(generic.UpdateView):
     model = Sleep
     context_object_name = "sleep"
-    template_name = "aida/generic_form.html"
+    template_name = "aida/generic/form.html"
     fields = ("slept_at", "awoke_at")
     success_url = reverse_lazy("aida:sleep-list")
 
@@ -70,7 +70,7 @@ class Delete(View):
             "object": sleep,
             "type": "sleep",
         }
-        return render(request, "aida/generic_delete.html", context)
+        return render(request, "aida/generic/delete.html", context)
 
     @staticmethod
     def post(request: HttpRequest, pk: int) -> HttpResponse:
@@ -84,4 +84,4 @@ class Delete(View):
             "type": "sleep",
         }
         messages.error(request, "Failed to delete Sleep.")
-        return render(request, "aida/generic_delete.html", context)
+        return render(request, "aida/generic/delete.html", context)

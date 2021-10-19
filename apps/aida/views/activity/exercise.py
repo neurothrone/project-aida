@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
 
-from apps.aida.forms.exercise import ExerciseForm
+from apps.aida.forms.activity.exercise import ExerciseForm
 from apps.aida.models.activity.exercise import Exercise
 from apps.aida.models.activity.workout import Workout
 
@@ -16,7 +16,7 @@ class List(View):
         context = {
             "exercises": Exercise.objects.all()
         }
-        return render(request, "aida/exercise/list.html", context)
+        return render(request, "aida/activity/exercise/list.html", context)
 
 
 class Create(View):
@@ -52,7 +52,7 @@ class Detail(View):
         context = {
             "exercise": Exercise.find_by_id(pk)
         }
-        return render(request, "aida/exercise/detail.html", context)
+        return render(request, "aida/activity/exercise/detail.html", context)
 
 
 class Update(View):
