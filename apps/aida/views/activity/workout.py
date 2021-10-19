@@ -3,81 +3,56 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 from django.views import View
 
-from apps.aida.forms.workout import WorkoutForm
 from apps.aida.models.activity.workout import Workout
 
 
-class List(View):
-    @staticmethod
-    def get(request: HttpRequest) -> HttpResponse:
-        workouts = Workout.find_all()
-        context = {
-            "workouts": workouts
-        }
-        return render(request, "aida/workout/list.html", context)
+class List(generic.ListView):
+    model = Workout
+    context_object_name = "workouts"
+    queryset = Workout.find_all()
+    template_name = "aida/activity/workout/list.html"
 
 
-class Create(View):
-    @staticmethod
-    def get(request: HttpRequest) -> HttpResponse:
-        form = WorkoutForm()
-        context = {
-            "form": form,
-            "text": "Create Workout",
-        }
-        return render(request, "aida/form.html", context)
+class Create(generic.CreateView):
+    model = Workout
+    context_object_name = "workout"
+    queryset = Workout.find_all()
+    template_name = "aida/generic_form.html"
+    fields = ("type", "engaged_at",)
 
-    @staticmethod
-    def post(request: HttpRequest) -> HttpResponse:
-        form = WorkoutForm(request.POST)
-        if form.is_valid():
-            workout = form.save()
-            messages.success(request, "Workout created.")
-            return redirect("aida:workout-detail", pk=workout.id)
-        context = {
-            "form": form,
-            "text": "Create Workout",
-        }
-        messages.error(request, "Failed to create workout.")
-        return render(request, "aida/form.html", context)
+    def form_valid(self, form):
+        messages.success(self.request, "Workout created.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Failed to create Workout.")
+        return super().form_invalid(form)
 
 
-class Detail(View):
-    @staticmethod
-    def get(request: HttpRequest, pk: int) -> HttpResponse:
-        context = {
-            "workout": Workout.find_by_id(pk),
-        }
-        return render(request, "aida/workout/detail.html", context)
+class Detail(generic.DetailView):
+    model = Workout
+    context_object_name = "workout"
+    template_name = "aida/activity/workout/detail.html"
 
 
-class Update(View):
-    @staticmethod
-    def get(request: HttpRequest, pk: int) -> HttpResponse:
-        workout = Workout.find_by_id(pk)
-        form = WorkoutForm(instance=workout)
-        context = {
-            "form": form,
-            "text": "Update Workout",
-        }
-        return render(request, "aida/form.html", context)
+class Update(generic.UpdateView):
+    model = Workout
+    context_object_name = "workout"
+    template_name = "aida/generic_form.html"
+    fields = ("type", "engaged_at")
+    success_url = reverse_lazy("aida:workout-list")
 
-    @staticmethod
-    def post(request: HttpRequest, pk: int) -> HttpResponse:
-        workout = Workout.find_by_id(pk)
-        form = WorkoutForm(request.POST, instance=workout)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Workout updated.")
-            return redirect("aida:workout-list")
-        context = {
-            "form": form,
-            "text": "Update Workout",
-        }
-        messages.error(request, "Failed to update workout.")
-        return render(request, "aida/form.html", context)
+    def form_valid(self, form):
+        messages.success(self.request, "Workout updated.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Failed to update Workout.")
+        return super().form_invalid(form)
 
 
 class Delete(View):
@@ -85,10 +60,10 @@ class Delete(View):
     def get(request: HttpRequest, pk: int) -> HttpResponse:
         workout = Workout.find_by_id(pk)
         context = {
-            "object": f"{workout.type.title()} workout",
-            "text": "Delete workout",
+            "object": workout,
+            "type": "workout",
         }
-        return render(request, "aida/delete.html", context)
+        return render(request, "aida/generic_delete.html", context)
 
     @staticmethod
     def post(request: HttpRequest, pk: int) -> HttpResponse:
@@ -98,8 +73,8 @@ class Delete(View):
             messages.success(request, "Workout deleted.")
             return redirect("aida:workout-list")
         context = {
-            "object": f"{workout.type.title()} workout",
-            "text": "Delete workout",
+            "object": workout,
+            "type": "workout",
         }
-        messages.error(request, "Failed to delete workout.")
-        return render(request, "aida/delete.html", context)
+        messages.error(request, "Failed to delete Workout.")
+        return render(request, "aida/generic_delete.html", context)
