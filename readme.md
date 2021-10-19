@@ -1,5 +1,5 @@
 # Fundamental Python Programming Project
-This is my project work on the course Fundamental Python Programming in the programme [Python Developer specializing in AI][education] at [Teknikhögskolan][teknikhogskolan] Gothenburg.
+This is my project work on the course **Fundamental Python Programming** in the programme [Python Developer specializing in AI][education] at [Teknikhögskolan][teknikhogskolan] Gothenburg.
 
 [education]: https://teknikhogskolan.se/utbildningar/pythonutvecklare-ai/
 [teknikhogskolan]: https://teknikhogskolan.se/
