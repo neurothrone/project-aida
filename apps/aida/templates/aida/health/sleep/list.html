@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List Sleep data</h1>
+    {% if sleeps %}
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Slept at</th>
+                <th>Awoke at</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sleep in sleeps %}
+                <tr>
+                    <td>{{ sleep.slept_at }}</td>
+                    <td>{{ sleep.awoke_at }}</td>
+                    <td>{{ sleep.duration_formatted }}</td>
+                    <td>
+                        <a class="btn btn-outline-info"
+                           href="{{ sleep.get_absolute_url }}">
+                            <i class="bi bi-eye"></i></a>
+                        <a class="btn btn-outline-warning"
+                           href="{{ sleep.get_update_url }}">
+                            <i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-outline-danger"
+                           href="{{ sleep.get_delete_url }}">
+                            <i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>No sleep data available.</h2>
+    {% endif %}
+{% endblock %}

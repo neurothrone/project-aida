@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Detail Sleep</h1>
+    <p>ID: {{ sleep.id }}</p>
+    <p>Slept at: {{ sleep.slept_at }}</p>
+    <p>Awoke at: {{ sleep.awoke_at }}</p>
+    <p>Duration: {{ sleep.duration_formatted }}</p>
+    <p>Duration (seconds): {{ sleep.duration }}</p>
+{% endblock %}
