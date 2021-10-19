@@ -4,18 +4,20 @@ from django.db import models
 from django.utils.timezone import make_aware
 
 from apps.aida.models.activity.base import Activity
+from shared.models.urls import ViewUrlsMixin
 
 WORKOUT_TYPES = [
-    ("cardio", "Cardio Workout"),
-    ("weight", "Weight Workout"),
+    ("c", "Cardio Workout"),
+    ("w", "Weight Workout"),
 ]
 
 
-class Workout(Activity):
-    type = models.CharField(choices=WORKOUT_TYPES, max_length=255, blank=True, null=True)
+class Workout(Activity, ViewUrlsMixin):
+    type = models.CharField(choices=WORKOUT_TYPES, max_length=255,
+                            help_text="Select the type of workout")
 
     def __str__(self) -> str:
-        return f"{self.type.title()} | {self.engaged_at.date()}"
+        return f"{self.get_type_display()} | {self.engaged_at.date()}"
 
     class Meta:
         ordering = ("-engaged_at",)
@@ -35,3 +37,14 @@ class Workout(Activity):
         aware_dt = make_aware(datetime.strptime(engaged_at, "%Y-%m-%d %H:%M"))
         return Workout.objects.create(type=workout_type, engaged_at=aware_dt)
 
+    @property
+    def detail_url(self) -> str:
+        return "aida:workout-detail"
+
+    @property
+    def update_url(self) -> str:
+        return "aida:workout-update"
+
+    @property
+    def delete_url(self) -> str:
+        return "aida:workout-delete"

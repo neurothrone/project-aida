@@ -4,9 +4,9 @@ from shared.models.base import BaseModel
 from apps.aida.models.activity.exercise import Exercise
 
 
-# TODO: inherit BaseModel
 class Set(BaseModel):
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE,
+                                 help_text="The exercise the set belongs to")
 
     def __str__(self) -> str:
         return self.exercise.name

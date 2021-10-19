@@ -5,9 +5,9 @@ from shared.models.urls import ViewUrlsMixin
 
 
 class Sleep(Health, ViewUrlsMixin):
-    slept_at = models.DateTimeField()
-    awoke_at = models.DateTimeField()
-    duration = models.PositiveIntegerField(default=0)
+    slept_at = models.DateTimeField(help_text="Enter the date and time you went to sleep")
+    awoke_at = models.DateTimeField(help_text="Enter the date and time you woke up at")
+    duration = models.PositiveIntegerField(default=0, help_text="Duration of sleep")
 
     class Meta:
         verbose_name_plural = "Sleep metrics"
