@@ -1,10 +1,14 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
-    <h1>Detail Sleep</h1>
-    <p>ID: {{ sleep.id }}</p>
-    <p>Slept at: {{ sleep.slept_at }}</p>
-    <p>Awoke at: {{ sleep.awoke_at }}</p>
-    <p>Duration: {{ sleep.duration_formatted }}</p>
-    <p>Duration (seconds): {{ sleep.duration }}</p>
+    <h1 class="text-light my-3">Sleep Detail</h1>
+    <div class="text-light">
+        <p><span class="text-primary">ID:</span> {{ sleep.id }}</p>
+        <p><span class="text-primary">Slept at:</span> {{ sleep.slept_at }}</p>
+        <p><span class="text-primary">Awoke at:</span> {{ sleep.awoke_at }}</p>
+        <p><span class="text-primary">Duration:</span> {{ sleep.duration_formatted }}</p>
+        <p><span class="text-primary">Duration (seconds):</span> {{ sleep.duration }}</p>
+    </div>
+
+    <a class="btn btn-outline-secondary" href="{{ request.META.HTTP_REFERER }}">Back</a>
 {% endblock %}

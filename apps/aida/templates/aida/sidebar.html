@@ -1,0 +1,73 @@
+<!-- SIDEBAR -->
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <h5 class="col-md-3 col-lg-2 me-0 px-3 text-uppercase">
+            <a class="text-reset text-decoration-none app-title" href="{% url 'aida:index' %}">Aida</a>
+        </h5>
+        <hr class="text-muted">
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Data metrics</span>
+        </h6>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="nav-link sidebar-link" href="#">
+                        {#<span data-feather="shopping-cart">Blood Pressure</span>#}
+                        Blood Pressure
+                    </a>
+                    <a class="px-3 fs-5 create-link" href="#" aria-label="Add new Blood Pressure data">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="nav-link sidebar-link" href="#">
+                        <span data-feather="file"></span>
+                        Pulse
+                    </a>
+                    <a class="px-3 fs-5 create-link" href="#" aria-label="Add new Pulse data">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="nav-link sidebar-link" href="{% url 'aida:sleep-list' %}">
+                        <span data-feather="users"></span>
+                        Sleep
+                    </a>
+                    <a class="px-3 fs-5 create-link" href="{% url 'aida:sleep-create' %}"
+                       aria-label="Add new Sleep data">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="nav-link sidebar-link" href="{% url 'aida:workout-list' %}">
+                        <span data-feather="layers"></span>
+                        Workouts
+                    </a>
+                    <a class="px-3 fs-5 create-link" href="{% url 'aida:workout-create' %}"
+                       aria-label="Add new Workout data">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Something else</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link sidebar-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Item 1
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

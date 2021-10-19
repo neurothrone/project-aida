@@ -1,15 +1,22 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
-    <h1>Detail Workout</h1>
-    <p>ID: {{ workout.id }}</p>
-    <p>Type: {{ workout.get_type_display }}</p>
-    <p>Trained: {{ workout.engaged_at }}</p>
-    {% if workout.exercise_set.all %}
-        <hr>
-        <h3>Exercises</h3>
-    {% endif %}
-    {% for exercise in workout.exercise_set.all %}
-        <p><a href="{% url 'aida:exercise-detail' pk=exercise.id %}">{{ exercise.name }}</a></p>
-    {% endfor %}
+    <h1 class="text-light my-3">Workout Detail</h1>
+    <div class="">
+        <div class="text-light">
+            <p><span class="text-primary">ID:</span> {{ workout.id }}</p>
+            <p><span class="text-primary">Type:</span> {{ workout.get_type_display }}</p>
+            <p><span class="text-primary">Engaged at:</span> {{ workout.engaged_at }}</p>
+        </div>
+
+        {% if workout.exercise_set.all %}
+            <hr>
+            <h3>Exercises</h3>
+        {% endif %}
+        {% for exercise in workout.exercise_set.all %}
+            <p><a href="{% url 'aida:exercise-detail' pk=exercise.id %}">{{ exercise.name }}</a></p>
+        {% endfor %}
+
+        <a class="btn btn-outline-secondary" href="{{ request.META.HTTP_REFERER }}">Back</a>
+    </div>
 {% endblock %}

@@ -1,39 +1,43 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
-    <h1>List Sleep data</h1>
+    <h1 class="text-light my-3">List of Sleep data</h1>
     {% if sleeps %}
-        <table class="table table-dark table-striped">
-            <thead>
-            <tr>
-                <th>Slept at</th>
-                <th>Awoke at</th>
-                <th>Duration</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for sleep in sleeps %}
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-sm">
+                <thead>
                 <tr>
-                    <td>{{ sleep.slept_at }}</td>
-                    <td>{{ sleep.awoke_at }}</td>
-                    <td>{{ sleep.duration_formatted }}</td>
-                    <td>
-                        <a class="btn btn-outline-info"
-                           href="{{ sleep.get_absolute_url }}">
-                            <i class="bi bi-eye"></i></a>
-                        <a class="btn btn-outline-warning"
-                           href="{{ sleep.get_update_url }}">
-                            <i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-outline-danger"
-                           href="{{ sleep.get_delete_url }}">
-                            <i class="bi bi-trash"></i></a>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Slept at</th>
+                    <th scope="col">Awoke at</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Actions</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for sleep in sleeps %}
+                    <tr class="align-middle">
+                        <td>{{ sleep.id }}</td>
+                        <td>{{ sleep.slept_at }}</td>
+                        <td>{{ sleep.awoke_at }}</td>
+                        <td>{{ sleep.duration_formatted }}</td>
+                        <td>
+                            <a class="btn btn-outline-info"
+                               href="{{ sleep.get_absolute_url }}">
+                                <i class="bi bi-eye"></i></a>
+                            <a class="btn btn-outline-warning"
+                               href="{{ sleep.get_update_url }}">
+                                <i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-outline-danger"
+                               href="{{ sleep.get_delete_url }}">
+                                <i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
-        <h2>No Sleep data available.</h2>
+        <p class="text-light">No Sleep data available.</p>
     {% endif %}
 {% endblock %}
