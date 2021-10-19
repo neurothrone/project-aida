@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-dark table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">Name</th>
+            <th scope="col">Vest Weight</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for exercise in workout.exercise_set.all %}
+            <tr class="align-middle">
+                <td>{{ exercise.id }}</td>
+                <td>{{ exercise.get_type_display }}</td>
+                <td>{{ exercise.name }}</td>
+                <td>{{ exercise.vest_weight }}</td>
+                <td>
+                    <a class="btn btn-outline-info"
+                       href="{{ exercise.get_absolute_url }}">
+                        <i class="bi bi-eye"></i></a>
+                    <a class="btn btn-outline-warning"
+                       href="{{ exercise.get_update_url }}">
+                        <i class="bi bi-pencil-square"></i></a>
+                    <a class="btn btn-outline-danger"
+                       href="{{ exercise.get_delete_url }}">
+                        <i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

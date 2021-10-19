@@ -1,11 +1,31 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
+    {#<div class="container-fluid">#}
+    {#    <div class="col-10 mx-auto border border-secondary rounded p-3 text-light bg-site-dark my-3">#}
+    {#        <h1>Create</h1>#}
+    {#        <form action="" method="post">#}
+    {#            {% csrf_token %}#}
+    {#            {% for field in form %}#}
+    {#                <div class="mb-3">#}
+    {#                    <label for={{ field.id_for_label }}"">{{ field.label }}</label>#}
+    {#                    {{ field }}#}
+    {#                </div>#}
+    {#            {% endfor %}#}
+    {#            <button class="btn btn-success" type="submit">Create</button>#}
+    {#        </form>#}
+    {#    </div>#}
+    {#</div>#}
+
+
+    <h1 class="text-light my-3">Create</h1>
     <form action="" method="post">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
+        <div class="text-light">
+            <table>
+                {{ form.as_table }}
+            </table>
+        </div>
+        <button class="btn btn-outline-success" type="submit">Create</button>
     </form>
 {% endblock %}

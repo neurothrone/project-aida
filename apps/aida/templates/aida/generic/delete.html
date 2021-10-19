@@ -1,11 +1,15 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
-    <h1>Delete {{ type|title }} data</h1>
+    <h1 class="text-light my-3">Delete {{ type|title }} data</h1>
     <!-- object will use __str__() if defined -->
-    <p>Are you sure you want to delete the {{ type }} data: <strong>{{ object }}</strong>?</p>
+    <p class="text-light">Are you sure you want to delete the {{ type }} data: <strong>{{ object }}</strong>?</p>
     <form action="" method="POST">
         {% csrf_token %}
-        <input type="submit" value="Yes, delete.">
+        <button class="btn btn-outline-danger" type="submit">Yes, delete.</button>
+        <button class="btn btn-secondary ms-2">
+            <a class="text-reset, text-decoration-none text-light"
+               href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+        </button>
     </form>
 {% endblock %}

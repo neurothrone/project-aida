@@ -1,11 +1,15 @@
-{% extends "base.html" %}
+{% extends "aida/base.html" %}
 
 {% block content %}
-    <h1>Detail Exercise</h1>
-    <p>ID: {{ exercise.id }}</p>
-    <p>Type: {{ exercise.type }}</p>
-    <p>Name: {{ exercise.name }}</p>
-    <p>Vest Weight: {{ exercise.vest_weight }}</p>
+    <h1 class="text-light my-3">Detail Exercise</h1>
+    <div class="text-light">
+        <p><span class="text-primary">ID:</span> {{ exercise.id }}</p>
+        <p><span class="text-primary">Type:</span> {{ exercise.get_type_display }}</p>
+        <p><span class="text-primary">Name:</span> {{ exercise.name }}</p>
+        <p><span class="text-primary">Vest Weight:</span> {{ exercise.vest_weight }} kg</p>
+    </div>
+    <hr class="text-light">
+    <a class="btn btn-outline-secondary" href="{{ exercise.workout.get_absolute_url }}">Workout</a>
 
     {% if exercise.type == "cardio" %}
         {% for set in exercise.cardioset_set.all %}
