@@ -8,7 +8,7 @@
             <thead>
             <tr>
                 <th>Type</th>
-                <th>Trained</th>
+                <th>Engaged at</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -19,14 +19,14 @@
                     <td>{{ workout.engaged_at }}</td>
                     <td>
                         <a class="btn btn-outline-info"
-                           href="{% url 'aida:workout-detail' pk=workout.id %}">
-                            <i class="bi bi-eye"></i>&nbsp;View</a>
+                           href="{{ workout.get_absolute_url }}">
+                            <i class="bi bi-eye"></i></a>
                         <a class="btn btn-outline-warning"
-                           href="{% url 'aida:workout-update' pk=workout.id %}">
-                            <i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                           href="{{ workout.get_update_url }}">
+                            <i class="bi bi-pencil-square"></i></a>
                         <a class="btn btn-outline-danger"
-                           href="{% url 'aida:workout-delete' pk=workout.id %}">
-                            <i class="bi bi-trash"></i>&nbsp;Delete</a>
+                           href="{{ workout.get_delete_url }}">
+                            <i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             {% endfor %}

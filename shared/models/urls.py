@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class ViewMixin(models.Model):
+class ViewUrlsMixin(models.Model):
     class Meta:
         abstract = True
 
