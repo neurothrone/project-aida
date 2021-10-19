@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Detail Workout</h1>
     <p>ID: {{ workout.id }}</p>
-    <p>Type: {{ workout.type }}</p>
+    <p>Type: {{ workout.get_type_display }}</p>
     <p>Trained: {{ workout.engaged_at }}</p>
     {% if workout.exercise_set.all %}
         <hr>
