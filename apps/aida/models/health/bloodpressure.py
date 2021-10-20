@@ -1,10 +1,9 @@
 from django.db import models
 
 from apps.aida.models.health import HealthMetric
-from shared.models.urls import ViewUrlsMixin
 
 
-class BloodPressure(HealthMetric, ViewUrlsMixin):
+class BloodPressure(HealthMetric):
     systolic = models.PositiveSmallIntegerField(help_text="Enter the systolic value (the upper value)")
     diastolic = models.PositiveSmallIntegerField(help_text="Enter diastolic value (the lower value)")
 

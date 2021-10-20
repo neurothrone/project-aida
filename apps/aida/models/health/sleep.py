@@ -20,7 +20,7 @@ class Sleep(Health, ViewUrlsMixin):
         self.duration = int((self.awoke_at - self.slept_at).total_seconds())
         super().save(*args, **kwargs)
 
-    def duration_formatted(self):
+    def duration_formatted(self) -> str:
         total_minutes = self.duration / 60
         minutes = total_minutes % 60
         hours = (total_minutes - minutes) / 60

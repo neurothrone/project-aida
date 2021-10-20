@@ -1,7 +1,6 @@
 from django.db import models
 
-from .base import Set
-from shared.models.urls import ViewUrlsMixin
+from apps.aida.models.activity.set import Set
 
 TIME_UNITS = [
     ("s", "Seconds"),
@@ -10,7 +9,7 @@ TIME_UNITS = [
 ]
 
 
-class CardioSet(Set, ViewUrlsMixin):
+class CardioSet(Set):
     speed = models.PositiveSmallIntegerField(default=0,
                                              help_text="Enter the speed the set was performed in (km/h)")
     duration = models.PositiveSmallIntegerField(default=0,

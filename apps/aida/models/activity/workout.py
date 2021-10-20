@@ -3,8 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.utils.timezone import make_aware
 
-from apps.aida.models.activity.base import Activity
-from shared.models.urls import ViewUrlsMixin
+from apps.aida.models.activity import Activity
 
 WORKOUT_TYPES = [
     ("c", "Cardio Workout"),
@@ -12,7 +11,7 @@ WORKOUT_TYPES = [
 ]
 
 
-class Workout(Activity, ViewUrlsMixin):
+class Workout(Activity):
     type = models.CharField(choices=WORKOUT_TYPES, max_length=255,
                             help_text="Select the type of workout")
 

@@ -1,7 +1,6 @@
 from django.db import models
 
-from .base import Set
-from shared.models.urls import ViewUrlsMixin
+from apps.aida.models.activity.set import Set
 
 WEIGHT_UNITS = [
     ("g", "Grams"),
@@ -10,7 +9,7 @@ WEIGHT_UNITS = [
 ]
 
 
-class WeightSet(Set, ViewUrlsMixin):
+class WeightSet(Set):
     reps = models.PositiveSmallIntegerField(default=0,
                                             help_text="Enter the amount of repetitions performed in the set")
     weight = models.PositiveSmallIntegerField(default=0,

@@ -1,10 +1,9 @@
 from django.db import models
 
 from apps.aida.models.health import HealthMetric
-from shared.models.urls import ViewUrlsMixin
 
 
-class HeartRate(HealthMetric, ViewUrlsMixin):
+class HeartRate(HealthMetric):
     pulse = models.PositiveSmallIntegerField(help_text="Enter your hearts beats per minute")
 
     class Meta:
