@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.aida.models.health.metric import HealthMetric
+from apps.aida.models.health import HealthMetric
 from shared.models.urls import ViewUrlsMixin
 
 
