@@ -4,6 +4,7 @@ from apps.aida.views import IndexView
 
 from apps.aida.views.activity import exercise
 from apps.aida.views.activity import workout
+from apps.aida.views.activity import set
 from apps.aida.views.health import sleep
 
 app_name = "aida"
@@ -19,11 +20,22 @@ urlpatterns = [
     path("workout/delete/<int:pk>/", workout.Delete.as_view(), name="workout-delete"),
 
     #   Exercise
-    path("exercise/list/", exercise.List.as_view(), name="exercise-list"),
+    # path("exercise/list/", exercise.List.as_view(), name="exercise-list"),
     path("exercise/create/<int:pk>/", exercise.Create.as_view(), name="exercise-create"),
     path("exercise/detail/<int:pk>/", exercise.Detail.as_view(), name="exercise-detail"),
     path("exercise/update/<int:pk>/", exercise.Update.as_view(), name="exercise-update"),
     path("exercise/delete/<int:pk>/", exercise.Delete.as_view(), name="exercise-delete"),
+
+    #   Set
+    path("set/cardio/create/<int:pk>/", set.CardioCreate.as_view(), name="cardio-set-create"),
+    path("set/cardio/detail/<int:pk>/", set.CardioDetail.as_view(), name="cardio-set-detail"),
+    path("set/cardio/update/<int:pk>/", set.CardioUpdate.as_view(), name="cardio-set-update"),
+    path("set/cardio/delete/<int:pk>/", set.CardioDelete.as_view(), name="cardio-set-delete"),
+
+    path("set/weight/create/<int:pk>/", set.WeightCreate.as_view(), name="weight-set-create"),
+    path("set/weight/detail/<int:pk>/", set.WeightDetail.as_view(), name="weight-set-detail"),
+    path("set/weight/update/<int:pk>/", set.WeightUpdate.as_view(), name="weight-set-update"),
+    path("set/weight/delete/<int:pk>/", set.WeightDelete.as_view(), name="weight-set-delete"),
 
     # HEALTH
     #   Sleep

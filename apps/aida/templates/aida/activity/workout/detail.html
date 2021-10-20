@@ -13,17 +13,13 @@
         <div>
             <a class="btn btn-outline-success" href="{% url 'aida:exercise-create' pk=workout.id %}">Create Exercise</a>
             <a class="btn btn-outline-secondary ms-2" href="{% url 'aida:workout-list' %}">Back to Workouts</a>
-
         </div>
+
         {% if workout.exercise_set.all %}
             <h2 class="text-light my-2">Exercises</h2>
             {% include "aida/activity/workout/_exercises.html" %}
         {% else %}
             <p class="text-light">No exercises found.</p>
         {% endif %}
-        {#        {% for exercise in workout.exercise_set.all %}#}
-        {#            <p><a href="{% url 'aida:exercise-detail' pk=exercise.id %}">{{ exercise.name }}</a></p>#}
-        {#        {% endfor %}#}
-
     </div>
 {% endblock %}

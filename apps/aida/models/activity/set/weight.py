@@ -1,6 +1,7 @@
 from django.db import models
 
 from .base import Set
+from shared.models.urls import ViewUrlsMixin
 
 WEIGHT_UNITS = [
     ("g", "Grams"),
@@ -9,7 +10,7 @@ WEIGHT_UNITS = [
 ]
 
 
-class WeightSet(Set):
+class WeightSet(Set, ViewUrlsMixin):
     reps = models.PositiveSmallIntegerField(default=0,
                                             help_text="Enter the amount of repetitions performed in the set")
     weight = models.PositiveSmallIntegerField(default=0,
@@ -20,3 +21,15 @@ class WeightSet(Set):
 
     def __str__(self) -> str:
         return f"Weight Set of {super().__str__()}"
+
+    @property
+    def detail_url(self) -> str:
+        return "aida:weight-set-detail"
+
+    @property
+    def update_url(self) -> str:
+        return "aida:weight-set-update"
+
+    @property
+    def delete_url(self) -> str:
+        return "aida:weight-set-delete"

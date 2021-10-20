@@ -1,0 +1,75 @@
+{% if exercise.cardioset_set.all %}
+    <h2 class="text-light my-2">Cardio Sets</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Speed</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Time Unit</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for set in exercise.cardioset_set.all %}
+                <tr class="align-middle">
+                    <td>{{ set.id }}</td>
+                    <td>{{ set.speed }}</td>
+                    <td>{{ set.duration }}</td>
+                    <td>{{ set.get_time_unit_display }}</td>
+                    <td>
+                        <a class="btn btn-outline-info"
+                           href="{{ set.get_absolute_url }}">
+                            <i class="bi bi-eye"></i></a>
+                        <a class="btn btn-outline-warning"
+                           href="{{ set.get_update_url }}">
+                            <i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-outline-danger"
+                           href="{{ set.get_delete_url }}">
+                            <i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+{% if exercise.weightset_set.all %}
+    <h2 class="text-light my-2">Weight Sets</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Weight Unit</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for set in exercise.weightset_set.all %}
+                <tr class="align-middle">
+                    <td>{{ set.id }}</td>
+                    <td>{{ set.reps }}</td>
+                    <td>{{ set.weight }}</td>
+                    <td>{{ set.get_weight_unit_display }}</td>
+                    <td>
+                        <a class="btn btn-outline-info"
+                           href="{{ set.get_absolute_url }}">
+                            <i class="bi bi-eye"></i></a>
+                        <a class="btn btn-outline-warning"
+                           href="{{ set.get_update_url }}">
+                            <i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-outline-danger"
+                           href="{{ set.get_delete_url }}">
+                            <i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

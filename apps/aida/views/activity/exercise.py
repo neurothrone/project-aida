@@ -20,9 +20,13 @@ class List(generic.ListView):
 class Create(generic.CreateView):
     model = Exercise
     context_object_name = "exercise"
-    queryset = Exercise.find_all()
     template_name = "aida/generic/form.html"
     fields = ("type", "name", "vest_weight")
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        workout = Workout.find_by_id(pk)
+        return workout.get_absolute_url()
 
     def form_valid(self, form):
         pk = self.kwargs.get("pk")
@@ -33,6 +37,11 @@ class Create(generic.CreateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed to create Exercise.")
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(Create, self).get_context_data(**kwargs)
+        context["action"] = "Create"
+        return context
 
 
 class Detail(generic.DetailView):
@@ -59,6 +68,11 @@ class Update(generic.UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed to update Exercise.")
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(Update, self).get_context_data(**kwargs)
+        context["action"] = "Update"
+        return context
 
 
 class Delete(View):

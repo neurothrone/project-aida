@@ -9,19 +9,17 @@
         <p><span class="text-primary">Vest Weight:</span> {{ exercise.vest_weight }} kg</p>
     </div>
     <hr class="text-light">
-    <a class="btn btn-outline-secondary" href="{{ exercise.workout.get_absolute_url }}">Workout</a>
+    <div>
+        <a class="btn btn-outline-success" href="{% url 'aida:cardio-set-create' pk=exercise.id %}">
+            Create Cardio Set
+        </a>
+        <a class="btn btn-outline-success ms-2" href="{% url 'aida:weight-set-create' pk=exercise.id %}">
+            Create Weight Set
+        </a>
+        <a class="btn btn-outline-secondary ms-2" href="{{ exercise.workout.get_absolute_url }}">
+            Back to Workout
+        </a>
+    </div>
 
-    {% if exercise.type == "cardio" %}
-        {% for set in exercise.cardioset_set.all %}
-            <p>Speed: {{ set.speed }}</p>
-            <p>Duration: {{ set.duration }} {{ set.time_unit }}</p>
-            <hr>
-        {% endfor %}
-    {% elif exercise.type == "weight" %}
-        {% for set in exercise.weightset_set.all %}
-            <p>Reps: {{ set.reps }}</p>
-            <p>Weight: {{ set.weight }} {{ set.weight_unit }}</p>
-            <hr>
-        {% endfor %}
-    {% endif %}
+    {% include "aida/activity/exercise/_sets.html" %}
 {% endblock %}

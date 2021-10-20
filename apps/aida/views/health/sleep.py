@@ -27,9 +27,9 @@ class List(generic.ListView):
 class Create(generic.CreateView):
     model = Sleep
     context_object_name = "sleep"
-    queryset = Sleep.find_all()
     template_name = "aida/generic/form.html"
     fields = ("slept_at", "awoke_at")
+    success_url = reverse_lazy("aida:sleep-list")
 
     def form_valid(self, form):
         messages.success(self.request, "Sleep created.")
@@ -38,6 +38,11 @@ class Create(generic.CreateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed to create Sleep.")
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(Create, self).get_context_data(**kwargs)
+        context["action"] = "Create"
+        return context
 
 
 class Detail(generic.DetailView):
@@ -60,6 +65,11 @@ class Update(generic.UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed to update Sleep.")
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(Update, self).get_context_data(**kwargs)
+        context["action"] = "Update"
+        return context
 
 
 class Delete(View):

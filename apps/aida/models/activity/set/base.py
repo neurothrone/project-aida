@@ -8,9 +8,9 @@ class Set(BaseModel):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE,
                                  help_text="The exercise the set belongs to")
 
-    def __str__(self) -> str:
-        return self.exercise.name
-
     class Meta:
         abstract = True
+
+    def __str__(self) -> str:
+        return self.exercise.name
 

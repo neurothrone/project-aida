@@ -1,0 +1,13 @@
+{% extends "aida/base.html" %}
+
+{% block content %}
+    <h1 class="text-light my-3">Detail Cardio Set</h1>
+    <div class="text-light">
+        <p><span class="text-primary">ID:</span> {{ set.id }}</p>
+        <p><span class="text-primary">Speed:</span> {{ set.speed }}</p>
+        <p><span class="text-primary">Duration:</span> {{ set.duration }}</p>
+        <p><span class="text-primary">Time Unit:</span> {{ set.time_unit }}</p>
+    </div>
+    <hr class="text-light">
+    <a class="btn btn-outline-secondary" href="{{ set.exercise.get_absolute_url }}">Back to Exercise</a>
+{% endblock %}

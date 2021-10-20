@@ -7,9 +7,6 @@
     <form action="" method="POST">
         {% csrf_token %}
         <button class="btn btn-outline-danger" type="submit">Yes, delete.</button>
-        <button class="btn btn-secondary ms-2">
-            <a class="text-reset, text-decoration-none text-light"
-               href="{{ request.META.HTTP_REFERER }}">Cancel</a>
-        </button>
+        <a class="btn btn-secondary ms-2" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
     </form>
 {% endblock %}
