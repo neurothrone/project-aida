@@ -10,20 +10,31 @@ Its purpose is to allow a user to store and track a history of measurable metric
 
 The metrics to focus primarily on initially, subdivided into the following categories:
 - Activity
-  - Training performance
+  - Workout performance
 - Health
   - Blood pressure
   - Heart rate
   - Sleep
+  - Body weight
 - Interests
   - Books
   - Games
   - Movies
 
 ## Roadmap
-- [ ] Web interface
+- Web interface
+  - Activity
+    - [x] Workout
+  - Health
+    - [x] Blood pressure
+    - [x] Heart rate
+    - [x] Sleep
+    - [ ] Body weight
+- [ ] Simple visualizations for training and sleep data
+- [ ] Authentication, Login for single user
 - [ ] REST API
-- [ ] Visualization
+- [ ] Deployment
+- [ ] Advanced Visualizations
 - [ ] Support for other users (authentication, registration, profiles)
 - [ ] Advanced database functionality
 - [ ] AI Integration
