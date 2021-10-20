@@ -6,7 +6,7 @@
         </h5>
         <hr class="text-muted">
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Activity metrics</span>
         </h6>
         <ul class="nav flex-column">
@@ -40,11 +40,11 @@
             </li>
             <li class="nav-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a class="nav-link sidebar-link" href="#">
+                    <a class="nav-link sidebar-link" href="{% url 'aida:hr-list' %}">
                         <span data-feather="file"></span>
                         Heart Rate
                     </a>
-                    <a class="px-3 fs-5 create-link" href="#" aria-label="Add new Pulse data">
+                    <a class="px-3 fs-5 create-link" href="{% url 'aida:hr-create' %}" aria-label="Add new Pulse data">
                         <i class="bi bi-plus-circle"></i>
                     </a>
                 </div>

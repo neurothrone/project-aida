@@ -6,6 +6,7 @@ from apps.aida.views.activity import exercise
 from apps.aida.views.activity import workout
 from apps.aida.views.activity import set
 from apps.aida.views.health import bloodpressure as bp
+from apps.aida.views.health import heartrate as hr
 from apps.aida.views.health import sleep
 
 app_name = "aida"
@@ -45,6 +46,13 @@ urlpatterns = [
     path("health/bp/detail/<int:pk>/", bp.Detail.as_view(), name="bp-detail"),
     path("health/bp/update/<int:pk>/", bp.Update.as_view(), name="bp-update"),
     path("health/bp/delete/<int:pk>/", bp.Delete.as_view(), name="bp-delete"),
+
+    # - Heart rate
+    path("health/hr/list/", hr.List.as_view(), name="hr-list"),
+    path("health/hr/create/", hr.Create.as_view(), name="hr-create"),
+    path("health/hr/detail/<int:pk>/", hr.Detail.as_view(), name="hr-detail"),
+    path("health/hr/update/<int:pk>/", hr.Update.as_view(), name="hr-update"),
+    path("health/hr/delete/<int:pk>/", hr.Delete.as_view(), name="hr-delete"),
 
     # - Sleep
     path("health/sleep/list/", sleep.List.as_view(), name="sleep-list"),
