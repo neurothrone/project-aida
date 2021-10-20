@@ -5,8 +5,8 @@ from apps.aida.admin.activity.set import CardioSetAdmin
 from apps.aida.admin.activity.set import WeightSetAdmin
 from apps.aida.admin.activity.workout import WorkoutAdmin
 
-from apps.aida.admin.health.pressure import BloodPressureAdmin
-from apps.aida.admin.health.pulse import HeartRateAdmin
+from apps.aida.admin.health.bloodpressure import BloodPressureAdmin
+from apps.aida.admin.health.heartrate import HeartRateAdmin
 from apps.aida.admin.health.sleep import SleepAdmin
 
 
@@ -32,7 +32,7 @@ class AidaAdminSite(admin.AdminSite):
                     "Cardio sets": 3,
                     "Weight sets": 4,
                     "Blood pressure metrics": 5,
-                    "Pulse metrics": 6,
+                    "Heart rate metrics": 6,
                     "Sleep metrics": 7
                 }
                 app["models"].sort(key=lambda x: ordering[x["name"]])

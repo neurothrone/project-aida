@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.aida.models.health.pulse import HeartRate
+from apps.aida.models.health.heartrate import HeartRate
 
 
 @admin.register(HeartRate)
