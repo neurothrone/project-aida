@@ -12,11 +12,10 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a class="nav-link sidebar-link" href="#">
-                        {#<span data-feather="shopping-cart">Blood Pressure</span>#}
+                    <a class="nav-link sidebar-link" href="{% url 'aida:bp-list' %}">
                         Blood Pressure
                     </a>
-                    <a class="px-3 fs-5 create-link" href="#" aria-label="Add new Blood Pressure data">
+                    <a class="px-3 fs-5 create-link" href="{% url 'aida:bp-create' %}" aria-label="Add new Blood Pressure data">
                         <i class="bi bi-plus-circle"></i>
                     </a>
                 </div>

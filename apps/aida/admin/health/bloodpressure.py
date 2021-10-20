@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.aida.models.health.pressure import BloodPressure
+from apps.aida.models.health.bloodpressure import BloodPressure
 
 
 @admin.register(BloodPressure)

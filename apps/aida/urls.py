@@ -5,6 +5,7 @@ from apps.aida.views import IndexView
 from apps.aida.views.activity import exercise
 from apps.aida.views.activity import workout
 from apps.aida.views.activity import set
+from apps.aida.views.health import bloodpressure as bp
 from apps.aida.views.health import sleep
 
 app_name = "aida"
@@ -12,21 +13,21 @@ urlpatterns = [
     path("", IndexView.as_view(), name="index"),
 
     # ACTIVITY
-    #   Workout
+    # - Workout
     path("workout/list/", workout.List.as_view(), name="workout-list"),
     path("workout/create/", workout.Create.as_view(), name="workout-create"),
     path("workout/detail/<int:pk>/", workout.Detail.as_view(), name="workout-detail"),
     path("workout/update/<int:pk>/", workout.Update.as_view(), name="workout-update"),
     path("workout/delete/<int:pk>/", workout.Delete.as_view(), name="workout-delete"),
 
-    #   Exercise
+    # - Exercise
     # path("exercise/list/", exercise.List.as_view(), name="exercise-list"),
     path("exercise/create/<int:pk>/", exercise.Create.as_view(), name="exercise-create"),
     path("exercise/detail/<int:pk>/", exercise.Detail.as_view(), name="exercise-detail"),
     path("exercise/update/<int:pk>/", exercise.Update.as_view(), name="exercise-update"),
     path("exercise/delete/<int:pk>/", exercise.Delete.as_view(), name="exercise-delete"),
 
-    #   Set
+    # - Set
     path("set/cardio/create/<int:pk>/", set.CardioCreate.as_view(), name="cardio-set-create"),
     path("set/cardio/detail/<int:pk>/", set.CardioDetail.as_view(), name="cardio-set-detail"),
     path("set/cardio/update/<int:pk>/", set.CardioUpdate.as_view(), name="cardio-set-update"),
@@ -38,7 +39,14 @@ urlpatterns = [
     path("set/weight/delete/<int:pk>/", set.WeightDelete.as_view(), name="weight-set-delete"),
 
     # HEALTH
-    #   Sleep
+    # - Blood pressure
+    path("health/bp/list/", bp.List.as_view(), name="bp-list"),
+    path("health/bp/create/", bp.Create.as_view(), name="bp-create"),
+    path("health/bp/detail/<int:pk>/", bp.Detail.as_view(), name="bp-detail"),
+    path("health/bp/update/<int:pk>/", bp.Update.as_view(), name="bp-update"),
+    path("health/bp/delete/<int:pk>/", bp.Delete.as_view(), name="bp-delete"),
+
+    # - Sleep
     path("health/sleep/list/", sleep.List.as_view(), name="sleep-list"),
     path("health/sleep/create/", sleep.Create.as_view(), name="sleep-create"),
     path("health/sleep/detail/<int:pk>/", sleep.Detail.as_view(), name="sleep-detail"),
