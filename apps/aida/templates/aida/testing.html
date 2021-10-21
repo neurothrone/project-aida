@@ -1,0 +1,12 @@
+{% block testing %}
+    <div class="text-light">
+        <!-- TODO: if authenticated and admin -->
+        <hr>
+        <h2>Load data from json on local data storage</h2>
+        <form action="{% url 'aida:sleep-load-data' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-primary" type="submit">Load data</button>
+        </form>
+    </div>
+{% endblock %}
