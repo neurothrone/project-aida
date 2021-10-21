@@ -8,4 +8,5 @@ urlpatterns = [
     # custom
     path("", include("apps.main.urls")),
     path("aida/", include("apps.aida.urls")),
+    path("api/", include("api.urls")),
 ]
