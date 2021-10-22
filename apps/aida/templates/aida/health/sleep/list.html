@@ -38,8 +38,8 @@
                 {% for sleep in sleeps %}
                     <tr class="align-middle">
                         <td>{{ sleep.id }}</td>
-                        <td>{{ sleep.slept_at }}</td>
-                        <td>{{ sleep.awoke_at }}</td>
+                        <td>{{ sleep.slept_at_table_format }}</td>
+                        <td>{{ sleep.awoke_at_table_format }}</td>
                         <td>{{ sleep.duration_formatted }}</td>
                         <td>
                             <a class="btn btn-outline-info"
