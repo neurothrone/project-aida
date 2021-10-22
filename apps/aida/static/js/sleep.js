@@ -1,12 +1,10 @@
 import {drawLineGraph} from "./charts/line.mjs";
-// import {drawBarGraph} from "./charts/bar.mjs";
+import {drawBarGraph} from "./charts/bar.mjs";
 
 const baseUrl = "http://127.0.0.1:8000";
-const sleepListEndPoint = `${baseUrl}/api/health/sleep/chart/`;
+const sleepEndPoint = `${baseUrl}/api/health/sleep/chart/`;
 
-const lineId = "sleepLineGraph";
-// const barId = "sleepBarGraph";
-
+const id = "sleepGraph";
 const options = {
     plugins: {
         legend: {
@@ -66,13 +64,19 @@ const options = {
     }
 }
 
-let getSleepData = () => {
-    fetch(sleepListEndPoint)
+function drawSleepGraph(endpoint, id, options, type = "line") {
+    fetch(endpoint)
         .then(response => response.json())
         .then(data => {
-            drawLineGraph(data, lineId, options);
-            // drawBarGraph(data, barId);
+            switch (type) {
+                case "line":
+                    drawLineGraph(data, id, options);
+                    break;
+                case "bar":
+                    drawBarGraph(data, id);
+                    break;
+            }
         });
 }
 
-getSleepData();
+drawSleepGraph(sleepEndPoint, id, options);
