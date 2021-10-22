@@ -37,15 +37,6 @@ class ChartData(APIView):
 
     @staticmethod
     def get(request: Request) -> Response:
-        queryset = Sleep.find_all()
-
-        dates = [datum.awoke_at.date() for datum in queryset]
-        durations = [round(datum.duration / 60 / 60, 1) for datum in queryset]
-
-        data = {
-            "labels": dates,
-            "chart_data": durations,
-            "chart_label": "Hours slept"
-        }
-
-        return Response(data, status=status.HTTP_200_OK)
+        if data := Sleep.all_to_chart_data():
+            return Response(data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)

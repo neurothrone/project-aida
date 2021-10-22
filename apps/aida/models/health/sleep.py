@@ -76,3 +76,16 @@ class Sleep(Health, ViewUrlsMixin):
     @property
     def delete_url(self) -> str:
         return "aida:sleep-delete"
+
+    @classmethod
+    def all_to_chart_data(cls) -> dict:
+        queryset = cls.objects.all().order_by("awoke_at")
+
+        dates = [datum.awoke_at.date() for datum in queryset]
+        durations = [round(datum.duration / 60 / 60, 1) for datum in queryset]
+
+        return {
+            "labels": dates,
+            "chart_data": durations,
+            "chart_label": "Hours slept"
+        }
