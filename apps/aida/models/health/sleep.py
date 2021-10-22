@@ -1,9 +1,18 @@
+from datetime import datetime
+
 from django.db import models
+from django.utils.timezone import make_aware
 
 from apps.aida.models.health import Health
 from shared.models.urls import ViewUrlsMixin
 
 
+# TODO: method to return a dict of:
+#       - dates in only date format
+#       - duration hours
+# TODO: method that returns if duration relative to recommendation: good or bad
+#       if 7 <= duration <= 9: good, else not good
+# TODO: recommendation relative to age accessed through profile data
 class Sleep(Health, ViewUrlsMixin):
     slept_at = models.DateTimeField(help_text="Enter the date and time you went to sleep")
     awoke_at = models.DateTimeField(help_text="Enter the date and time you woke up at")
@@ -25,6 +34,36 @@ class Sleep(Health, ViewUrlsMixin):
         minutes = total_minutes % 60
         hours = (total_minutes - minutes) / 60
         return f"{hours:.0f} h {minutes:.0f} min"
+
+    def awoke_at_table_format(self) -> str:
+        return Sleep.datetime_table_format(self.awoke_at)
+
+    def slept_at_table_format(self) -> str:
+        return Sleep.datetime_table_format(self.slept_at)
+
+    @staticmethod
+    def datetime_table_format(dt: datetime):
+        return datetime.strftime(dt, "%b. %d %Y, %H:%M")
+
+    @staticmethod
+    def create(slept_at: str, awoke_at: str) -> "Sleep":
+        """Creates a Sleep object, stores it in the database and returns the object.
+
+        Args:
+            slept_at (str): the date and time of falling asleep in the format YYYY-MM-DD HH:MM.
+            awoke_at (str): the date and time of awakening in the format YYYY-MM-DD HH:MM.
+
+        Returns:
+            Sleep: the Sleep object that was created.
+        """
+
+        return Sleep.objects.create(slept_at=make_aware(datetime.strptime(slept_at, "%Y-%m-%d %H:%M")),
+                                    awoke_at=make_aware(datetime.strptime(awoke_at, "%Y-%m-%d %H:%M")))
+
+    @staticmethod
+    def create_from_json(data: dict) -> None:
+        for datum in data:
+            Sleep.create(datum["slept_at"], datum["awoke_at"])
 
     @property
     def detail_url(self) -> str:
