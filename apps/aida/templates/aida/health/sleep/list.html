@@ -43,13 +43,22 @@
                         <td>{{ sleep.duration_formatted }}</td>
                         <td>
                             <a class="btn btn-outline-info"
-                               href="{{ sleep.get_absolute_url }}">
+                               href="{{ sleep.get_absolute_url }}"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="View">
                                 <i class="bi bi-eye"></i></a>
                             <a class="btn btn-outline-warning"
-                               href="{{ sleep.get_update_url }}">
+                               href="{{ sleep.get_update_url }}"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="Edit">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-outline-danger"
-                               href="{{ sleep.get_delete_url }}">
+                               href="{{ sleep.get_delete_url }}"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="Delete">
                                 <i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
