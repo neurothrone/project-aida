@@ -15,6 +15,7 @@ class List(APIView):
     def get(request: Request) -> Response:
         queryset = Sleep.find_all()
         serializer = SleepSerializer(queryset, many=True)
+        print(type(serializer.data))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -28,3 +29,23 @@ class Detail(APIView):
             serializer = SleepSerializer(sleep)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class ChartData(APIView):
+    # authentication_classes = []
+    # permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def get(request: Request) -> Response:
+        queryset = Sleep.find_all()
+
+        dates = [datum.awoke_at.date() for datum in queryset]
+        durations = [round(datum.duration / 60 / 60, 1) for datum in queryset]
+
+        data = {
+            "labels": dates,
+            "chart_data": durations,
+            "chart_label": "Hours slept"
+        }
+
+        return Response(data, status=status.HTTP_200_OK)

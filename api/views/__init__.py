@@ -8,6 +8,7 @@ class RoutesView(APIView):
     def get(request: Request, *args, **kwargs) -> Response:
         routes = [
             {"GET": "/api/health/sleep/"},
-            {"GET": "/api/health/sleep/pk/"}
+            {"GET": "/api/health/sleep/pk/"},
+            {"GET": "/api/health/sleep/chart/"},
         ]
         return Response(routes)
