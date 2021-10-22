@@ -76,6 +76,9 @@ function drawSleepGraph(endpoint, id, options, type = "line") {
                     drawBarGraph(data, id);
                     break;
             }
+        })
+        .catch((error) => {
+            console.error(`Something went wrong with drawSleepGraph(). Error: ${error}`);
         });
 }
 
