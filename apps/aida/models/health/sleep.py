@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 
 from django.db import models
 from django.utils.timezone import make_aware
@@ -43,7 +44,13 @@ class Sleep(Health, ViewUrlsMixin):
 
     @staticmethod
     def datetime_table_format(dt: datetime):
-        return datetime.strftime(dt, "%b. %d %Y, %H:%M")
+        return datetime.strftime(Sleep.to_local_time(dt), "%b. %d %Y, %H:%M")
+
+    @staticmethod
+    def to_local_time(dt: datetime):
+        aware_dt = make_aware(datetime.strptime(datetime.strftime(dt, "%Y-%m-%d %H:%M"), "%Y-%m-%d %H:%M"))
+        time_difference = dt - aware_dt
+        return dt + time_difference
 
     @staticmethod
     def create(slept_at: str, awoke_at: str) -> "Sleep":
