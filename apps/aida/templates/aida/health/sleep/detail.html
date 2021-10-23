@@ -4,8 +4,8 @@
     <h1 class="text-light my-3">Sleep Detail</h1>
     <div class="text-light">
         <p><span class="text-primary">ID:</span> {{ sleep.id }}</p>
-        <p><span class="text-primary">Slept at:</span> {{ sleep.slept_at }}</p>
-        <p><span class="text-primary">Awoke at:</span> {{ sleep.awoke_at }}</p>
+        <p><span class="text-primary">Slept at:</span> {{ sleep.slept_at_table_format }}</p>
+        <p><span class="text-primary">Awoke at:</span> {{ sleep.awoke_at_table_format }}</p>
         <p><span class="text-primary">Duration:</span> {{ sleep.duration_formatted }}</p>
         <p><span class="text-primary">Duration (seconds):</span> {{ sleep.duration }}</p>
     </div>
