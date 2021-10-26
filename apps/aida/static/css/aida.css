@@ -1,0 +1,20 @@
+.company-title,
+.app-title,
+.sidebar-link {
+    color: mediumpurple !important;
+}
+
+.sidebar-link:hover,
+.company-title:hover,
+.app-title:hover {
+    text-decoration: underline !important;
+}
+
+.create-link {
+    color: greenyellow;
+}
+
+.create-link:active,
+.create-link:hover {
+    color: green;
+}
