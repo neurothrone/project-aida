@@ -1,5 +1,4 @@
 from datetime import datetime
-from datetime import timedelta
 
 from django.db import models
 from django.utils.timezone import make_aware
@@ -8,9 +7,6 @@ from apps.aida.models.health import Health
 from shared.models.urls import ViewUrlsMixin
 
 
-# TODO: method to return a dict of:
-#       - dates in only date format
-#       - duration hours
 # TODO: method that returns if duration relative to recommendation: good or bad
 #       if 7 <= duration <= 9: good, else not good
 # TODO: recommendation relative to age accessed through profile data

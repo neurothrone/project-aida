@@ -55,6 +55,8 @@ urlpatterns = [
     path("health/hr/delete/<int:pk>/", hr.Delete.as_view(), name="hr-delete"),
 
     # - Sleep
+    path("health/sleep/to-csv/", sleep.ToCSV.as_view(), name="sleep-to-csv"),
+    path("health/sleep/to-json/", sleep.ToJSON.as_view(), name="sleep-to-json"),
     path("health/sleep/load/", sleep.LoadLocalDataView.as_view(), name="sleep-load-data"),
     path("health/sleep/list/", sleep.List.as_view(), name="sleep-list"),
     path("health/sleep/create/", sleep.Create.as_view(), name="sleep-create"),

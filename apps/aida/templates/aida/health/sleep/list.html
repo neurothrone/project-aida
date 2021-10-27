@@ -7,13 +7,45 @@
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Month</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Year</button>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-            </button>
+
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                        id="dropdown-import-menu"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Import from
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark"
+                    aria-labelledby="dropdown-import-menu">
+                    <li><h6 class="dropdown-header">Import data to database</h6></li>
+                    <li><a class="dropdown-item" href="#">CSV</a></li>
+                    <li><a class="dropdown-item" href="#">JSON</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                        id="dropdown-export-menu"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Export to
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark"
+                    aria-labelledby="dropdown-export-menu">
+                    <li><a class="dropdown-item" href="{% url 'aida:sleep-to-csv' %}">CSV</a></li>
+                    <li><a class="dropdown-item" href="{% url 'aida:sleep-to-json' %}">JSON</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+
         </div>
     </div>
 
