@@ -11,23 +11,10 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary">Year</button>
             </div>
 
-            <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                        id="dropdown-import-menu"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    Import from
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark"
-                    aria-labelledby="dropdown-import-menu">
-                    <li><h6 class="dropdown-header">Import data to database</h6></li>
-                    <li><a class="dropdown-item" href="#">CSV</a></li>
-                    <li><a class="dropdown-item" href="#">JSON</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-            </div>
+            <a class="btn btn-sm btn-outline-secondary me-2"
+               href="{% url 'aida:data-import' %}">
+                Import
+            </a>
 
             <div class="dropdown">
                 <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"

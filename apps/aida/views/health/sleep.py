@@ -12,10 +12,9 @@ from rest_framework import status
 from rest_framework.reverse import reverse as rf_reverse
 import requests
 
-from apps.aida.forms.file import LoadDataForm
-from apps.aida.forms.file import LoadLocalDataForm
+# from apps.aida.forms.file import LoadLocalDataForm
 from apps.aida.models.health.sleep import Sleep
-from shared.utils.file import load_data_from_json
+# from shared.utils.file import load_data_from_json
 
 
 # class LoadDataView(View):
@@ -35,14 +34,14 @@ from shared.utils.file import load_data_from_json
 #         return redirect("aida:sleep-list")
 
 
-class LoadLocalDataView(View):
-    @staticmethod
-    def post(request: HttpRequest) -> HttpResponse:
-        if path := request.POST.get("file", None):
-            data = load_data_from_json(path)
-            Sleep.create_from_json(data)
-            messages.success(request, "Sleep data successfully loaded.")
-        return redirect("aida:sleep-list")
+# class LoadLocalDataView(View):
+#     @staticmethod
+#     def post(request: HttpRequest) -> HttpResponse:
+#         if path := request.POST.get("file", None):
+#             data = load_data_from_json(path)
+#             Sleep.create_from_json(data)
+#             messages.success(request, "Sleep data successfully loaded.")
+#         return redirect("aida:sleep-list")
 
 
 class ToCSV(View):
@@ -88,7 +87,7 @@ class List(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(List, self).get_context_data(**kwargs)
         context["title"] = "Sleep Data"
-        context["form"] = LoadLocalDataForm()
+        # context["form"] = LoadLocalDataForm()
         return context
 
 

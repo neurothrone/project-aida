@@ -15,7 +15,7 @@ class List(generic.ListView):
     context_object_name = "workouts"
     queryset = Workout.find_all()
     template_name = "aida/activity/workout/list.html"
-    paginate_by = 15
+    paginate_by = 10
 
 
 class Create(generic.CreateView):
