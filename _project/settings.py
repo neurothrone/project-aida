@@ -70,6 +70,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                # allows access to MEDIA_URL in template
+                "django.template.context_processors.media",
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -133,6 +135,9 @@ STATICFILES_DIRS = [
 
 if not DEBUG:
     STATIC_ROOT = ...
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
