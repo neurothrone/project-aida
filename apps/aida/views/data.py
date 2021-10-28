@@ -35,7 +35,7 @@ class Import(View):
             # create an app or view focused mainly on file loading and saving?
             category = file_contents.get("category", None)
             if category and category == "sleep":
-                Sleep.create_from_json(file_contents["data"])
+                Sleep.populate_from_json(file_contents["data"])
                 messages.success(request, f"{category.capitalize()} data successfully uploaded.")
                 fs.delete(uploaded_file_path)
                 return redirect("aida:sleep-list")

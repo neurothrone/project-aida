@@ -63,11 +63,6 @@ class Sleep(Health, ViewUrlsMixin):
         return Sleep.objects.create(slept_at=make_aware(datetime.strptime(slept_at, "%Y-%m-%d %H:%M")),
                                     awoke_at=make_aware(datetime.strptime(awoke_at, "%Y-%m-%d %H:%M")))
 
-    # @staticmethod
-    # def create_from_json(data: dict) -> None:
-    #     for datum in data:
-    #         Sleep.create(datum["slept_at"], datum["awoke_at"])
-
     @property
     def detail_url(self) -> str:
         return "aida:sleep-detail"
@@ -101,8 +96,7 @@ class Sleep(Health, ViewUrlsMixin):
         pass
 
     @classmethod
-    def create_from_json(cls, data: dict) -> None:
-        # super() can take this part
+    def populate_from_json(cls, data: dict) -> None:
         cls.objects.all().delete()
         for datum in data:
             cls.create(**datum)
