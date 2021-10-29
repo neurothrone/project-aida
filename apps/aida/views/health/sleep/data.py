@@ -9,29 +9,33 @@ from django.http import HttpRequest
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.views import View
-from rest_framework import status
-from rest_framework.reverse import reverse as rf_reverse
-import requests
 
 from apps.aida.models.health.sleep import Sleep
+
+
+def csv_response(filename: str, header: list[str], data: dict) -> HttpResponse:
+    response = HttpResponse(
+        content_type="text/csv",
+        headers={"Content-Disposition": f"attachment;filename={filename}.csv"}, )
+    writer = csv.DictWriter(response, delimiter=",", lineterminator="\n", fieldnames=header)
+    writer.writeheader()
+    writer.writerows(data)
+    return response
+
+
+def json_response(filename: str, data: dict) -> HttpResponse:
+    response = HttpResponse(
+        json.dumps(data),
+        content_type="application/json",
+        headers={"Content-Disposition": f"attachment;filename={filename}.json"})
+    return response
 
 
 class ToCSV(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
-        response = HttpResponse(
-            content_type="text/csv",
-            headers={"Content-Disposition": "attachment;filename=sleep_data.csv"}, )
-
-        if data := Sleep.find_all():
-            headers = ["slept_at", "awoke_at"]
-            writer = csv.writer(response)
-            writer.writerow(headers)
-            for sleep in data:
-                writer.writerow([sleep.slept_at, sleep.awoke_at])
-            return response
-        messages.error(request, "Failed to export data to CSV.")
-        return redirect("aida:sleep-list")
+        header, data = Sleep.all_to_csv()
+        return csv_response("sleep_data", header, data)
 
 
 class FromCSV(View):
@@ -53,25 +57,7 @@ class FromCSV(View):
 class ToJSON(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
-        if data := Sleep.all_to_json():
-            response = HttpResponse(
-                json.dumps(data),
-                content_type="application/json",
-                headers={"Content-Disposition": "attachment;filename=sleep_data.json"})
-            return response
-
-        # url = rf_reverse("api:health-sleep-list", request=request)
-        # r = requests.get(url, params=request.GET)
-        # if r.status_code == status.HTTP_200_OK:
-        #     data = r.content.decode("utf-8")
-        #     response = HttpResponse(
-        #         data,
-        #         content_type="application/json",
-        #         headers={"Content-Disposition": "attachment;filename=sleep_data.json"})
-        #     return response
-
-        messages.error(request, "Failed to export data to JSON.")
-        return render(request, "aida/health/sleep/list.html")
+        return json_response("sleep_data", Sleep.all_to_json())
 
 
 class FromJSON(View):
