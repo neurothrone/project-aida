@@ -1,7 +1,9 @@
 from abc import abstractmethod
+from datetime import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.utils.timezone import make_aware
 
 
 class BaseModel(models.Model):
@@ -30,3 +32,13 @@ class BaseModel(models.Model):
     @classmethod
     def find_all(cls):
         return cls.objects.all()
+
+    @classmethod
+    def datetime_table_format(cls, dt: datetime):
+        return datetime.strftime(cls.to_local_time(dt), "%b. %d %Y, %H:%M")
+
+    @classmethod
+    def to_local_time(cls, dt: datetime):
+        aware_dt = make_aware(datetime.strptime(datetime.strftime(dt, "%Y-%m-%d %H:%M"), "%Y-%m-%d %H:%M"))
+        time_difference = dt - aware_dt
+        return dt + time_difference

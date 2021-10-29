@@ -39,16 +39,6 @@ class Sleep(Health, ViewUrlsMixin):
         return Sleep.datetime_table_format(self.slept_at)
 
     @staticmethod
-    def datetime_table_format(dt: datetime):
-        return datetime.strftime(Sleep.to_local_time(dt), "%b. %d %Y, %H:%M")
-
-    @staticmethod
-    def to_local_time(dt: datetime):
-        aware_dt = make_aware(datetime.strptime(datetime.strftime(dt, "%Y-%m-%d %H:%M"), "%Y-%m-%d %H:%M"))
-        time_difference = dt - aware_dt
-        return dt + time_difference
-
-    @staticmethod
     def create(slept_at: str, awoke_at: str) -> "Sleep":
         """Creates a Sleep object, stores it in the database and returns the object.
 
