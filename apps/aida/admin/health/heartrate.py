@@ -1,13 +1,14 @@
 from django.contrib import admin
 
+from apps.aida.admin.health import HeartMetricAdmin
 from apps.aida.models.health.heartrate import HeartRate
 
 
 @admin.register(HeartRate)
-class HeartRateAdmin(admin.ModelAdmin):
-    list_display = ("pulse", "condition")
+class HeartRateAdmin(HeartMetricAdmin):
+    list_display = ("id", "measured_at_", "pulse", "condition")
 
-    def condition(self, obj):
+    def condition(self, obj: HeartRate) -> str:
         if obj.pulse == 0:
             return "Dead"
         elif obj.pulse < 40:
@@ -20,5 +21,4 @@ class HeartRateAdmin(admin.ModelAdmin):
             return "Elevated"
         elif obj.pulse > 140:
             return "Alarmingly elevated"
-
         return "Undefined"
