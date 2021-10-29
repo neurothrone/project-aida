@@ -15,7 +15,6 @@ class List(APIView):
     def get(request: Request) -> Response:
         queryset = Sleep.find_all()
         serializer = SleepSerializer(queryset, many=True)
-        print(type(serializer.data))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
