@@ -1,20 +1,20 @@
 from django.urls import path
 
-from apps.aida.views import data
+from apps.aida.views import file
 from apps.aida.views import IndexView
 from apps.aida.views.activity import exercise
 from apps.aida.views.activity import workout
 from apps.aida.views.activity import set
 from apps.aida.views.health import bloodpressure as bp
 from apps.aida.views.health import heartrate as hr
-from apps.aida.views.health import sleep
+import apps.aida.views.health.sleep as sleep
 
 app_name = "aida"
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
 
     # DATA
-    path("import-data/", data.Import.as_view(), name="data-import"),
+    path("import-data/", file.Import.as_view(), name="data-import"),
 
     # ACTIVITY
     # - Workout
@@ -58,12 +58,12 @@ urlpatterns = [
     path("health/hr/delete/<int:pk>/", hr.Delete.as_view(), name="hr-delete"),
 
     # - Sleep
-    path("health/sleep/to-csv/", sleep.ToCSV.as_view(), name="sleep-to-csv"),
-    path("health/sleep/to-json/", sleep.ToJSON.as_view(), name="sleep-to-json"),
+    path("health/sleep/to-csv/", sleep.data.ToCSV.as_view(), name="sleep-to-csv"),
+    path("health/sleep/to-json/", sleep.data.ToJSON.as_view(), name="sleep-to-json"),
     # path("health/sleep/load/", sleep.LoadLocalDataView.as_view(), name="sleep-load-data"),
-    path("health/sleep/list/", sleep.List.as_view(), name="sleep-list"),
-    path("health/sleep/create/", sleep.Create.as_view(), name="sleep-create"),
-    path("health/sleep/detail/<int:pk>/", sleep.Detail.as_view(), name="sleep-detail"),
-    path("health/sleep/update/<int:pk>/", sleep.Update.as_view(), name="sleep-update"),
-    path("health/sleep/delete/<int:pk>/", sleep.Delete.as_view(), name="sleep-delete"),
+    path("health/sleep/list/", sleep.crud.List.as_view(), name="sleep-list"),
+    path("health/sleep/create/", sleep.crud.Create.as_view(), name="sleep-create"),
+    path("health/sleep/detail/<int:pk>/", sleep.crud.Detail.as_view(), name="sleep-detail"),
+    path("health/sleep/update/<int:pk>/", sleep.crud.Update.as_view(), name="sleep-update"),
+    path("health/sleep/delete/<int:pk>/", sleep.crud.Delete.as_view(), name="sleep-delete"),
 ]

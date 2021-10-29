@@ -1,5 +1,3 @@
-import csv
-
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpRequest
@@ -8,72 +6,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.views import View
 from django.urls import reverse_lazy
-from rest_framework import status
-from rest_framework.reverse import reverse as rf_reverse
-import requests
 
-# from apps.aida.forms.file import LoadLocalDataForm
 from apps.aida.models.health.sleep import Sleep
-# from shared.utils.file import load_data_from_json
-
-
-# class LoadDataView(View):
-#     @staticmethod
-#     def get(request: HttpRequest) -> HttpResponse:
-#         pass
-#
-#     @staticmethod
-#     def post(request: HttpRequest) -> HttpResponse:
-#         form = LoadDataForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             print("Form is valid.")
-#             data = load_data_from_json(request.FILES["file"])
-#             if data:
-#                 for datum in data:
-#                     print(datum)
-#         return redirect("aida:sleep-list")
-
-
-# class LoadLocalDataView(View):
-#     @staticmethod
-#     def post(request: HttpRequest) -> HttpResponse:
-#         if path := request.POST.get("file", None):
-#             data = load_data_from_json(path)
-#             Sleep.create_from_json(data)
-#             messages.success(request, "Sleep data successfully loaded.")
-#         return redirect("aida:sleep-list")
-
-
-class ToCSV(View):
-    @staticmethod
-    def get(request: HttpRequest) -> HttpResponse:
-        response = HttpResponse(
-            content_type="text/csv",
-            headers={"Content-Disposition": "attachment;filename='sleep_data.csv'"}, )
-
-        data = Sleep.find_all()
-        headers = ["slept_at", "awoke_at"]
-        writer = csv.writer(response)
-        writer.writerow(headers)
-        for sleep in data:
-            writer.writerow([sleep.slept_at, sleep.awoke_at])
-        return response
-
-
-class ToJSON(View):
-    @staticmethod
-    def get(request: HttpRequest) -> HttpResponse:
-        url = rf_reverse("api:health-sleep-list", request=request)
-        r = requests.get(url, params=request.GET)
-        if r.status_code == status.HTTP_200_OK:
-            data = r.content.decode("utf-8")
-            response = HttpResponse(
-                data,
-                content_type="application/json",
-                headers={"Content-Disposition": "attachment;filename=sleep_data.json"})
-            return response
-        messages.error(request, "Failed to save data to JSON.")
-        return render(request, "aida/health/sleep/list.html")
 
 
 # TODO: set permissions
