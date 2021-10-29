@@ -85,6 +85,11 @@ class Sleep(Health, ViewUrlsMixin):
     # TODO: all sleep data in current month
 
     @classmethod
+    def all_to_csv(cls) -> tuple[list, dict]:
+        header = ["slept_at", "awoke_at"]
+        return header, cls.all_to_json()["data"]
+
+    @classmethod
     def all_to_json(cls) -> dict:
         sleeps = cls.find_all()
         content = {
