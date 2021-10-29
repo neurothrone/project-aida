@@ -15,6 +15,7 @@ urlpatterns = [
 
     # DATA
     path("import-data/", file.Import.as_view(), name="data-import"),
+    # path("export-data/<str:type>/", file.Export.as_view(), name="data-export"),
 
     # ACTIVITY
     # - Workout
@@ -58,9 +59,10 @@ urlpatterns = [
     path("health/hr/delete/<int:pk>/", hr.Delete.as_view(), name="hr-delete"),
 
     # - Sleep
+    path("health/sleep/from-csv/<str:filename>/", sleep.data.FromCSV.as_view(), name="sleep-from-csv"),
+    path("health/sleep/from-json/<str:filename>/", sleep.data.FromJSON.as_view(), name="sleep-from-json"),
     path("health/sleep/to-csv/", sleep.data.ToCSV.as_view(), name="sleep-to-csv"),
     path("health/sleep/to-json/", sleep.data.ToJSON.as_view(), name="sleep-to-json"),
-    # path("health/sleep/load/", sleep.LoadLocalDataView.as_view(), name="sleep-load-data"),
     path("health/sleep/list/", sleep.crud.List.as_view(), name="sleep-list"),
     path("health/sleep/create/", sleep.crud.Create.as_view(), name="sleep-create"),
     path("health/sleep/detail/<int:pk>/", sleep.crud.Detail.as_view(), name="sleep-detail"),

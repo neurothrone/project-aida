@@ -1,7 +1,8 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.db import models
-from django.utils.timezone import make_aware
+# from django.utils.timezone import make_aware
 
 from apps.aida.models.health import Health
 from shared.models.urls import ViewUrlsMixin
@@ -43,15 +44,17 @@ class Sleep(Health, ViewUrlsMixin):
         """Creates a Sleep object, stores it in the database and returns the object.
 
         Args:
-            slept_at (str): the date and time of falling asleep in the format YYYY-MM-DD HH:MM.
-            awoke_at (str): the date and time of awakening in the format YYYY-MM-DD HH:MM.
+            slept_at (str): the date and time of falling asleep in the format YYYY-MM-DD HH:MM:SStz.
+            awoke_at (str): the date and time of awakening in the format YYYY-MM-DD HH:MM:SStz.
 
         Returns:
             Sleep: the Sleep object that was created.
         """
 
-        return Sleep.objects.create(slept_at=make_aware(datetime.strptime(slept_at, "%Y-%m-%d %H:%M")),
-                                    awoke_at=make_aware(datetime.strptime(awoke_at, "%Y-%m-%d %H:%M")))
+        return Sleep.objects.create(slept_at=datetime.strptime(slept_at, "%Y-%m-%d %H:%M:%S%z"),
+                                    awoke_at=datetime.strptime(awoke_at, "%Y-%m-%d %H:%M:%S%z"))
+        # return Sleep.objects.create(slept_at=make_aware(datetime.strptime(slept_at, "%Y-%m-%d %H:%M")),
+        #                             awoke_at=make_aware(datetime.strptime(awoke_at, "%Y-%m-%d %H:%M")))
 
     @property
     def detail_url(self) -> str:
@@ -82,11 +85,25 @@ class Sleep(Health, ViewUrlsMixin):
     # TODO: all sleep data in current month
 
     @classmethod
-    def import_from_csv(cls, data: list) -> None:
-        pass
+    def all_to_json(cls) -> dict:
+        sleeps = cls.find_all()
+        content = {
+            "category": "sleep",
+            "timezone": settings.TIME_ZONE,
+            "data": [],
+        }
+        for sleep in sleeps:
+            content["data"].append({"slept_at": str(sleep.slept_at), "awoke_at": str(sleep.awoke_at)})
+        return content
 
     @classmethod
-    def populate_from_json(cls, data: dict) -> None:
+    def populate_from_csv(cls, data: list[list[str]]) -> None:
+        cls.objects.all().delete()
+        for datum in data:
+            cls.create(*datum)
+
+    @classmethod
+    def populate_from_json(cls, data: list[dict]) -> None:
         cls.objects.all().delete()
         for datum in data:
             cls.create(**datum)
