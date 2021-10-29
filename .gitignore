@@ -130,3 +130,6 @@ dmypy.json
 
 # idea cache
 .idea/
+
+# local data dir
+data/
