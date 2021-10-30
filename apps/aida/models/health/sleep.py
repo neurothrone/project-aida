@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.conf import settings
 from django.db import models
-# from django.utils.timezone import make_aware
 
 from apps.aida.models.health import Health
 from shared.models.urls import ViewUrlsMixin
@@ -53,8 +52,6 @@ class Sleep(Health, ViewUrlsMixin):
 
         return Sleep.objects.create(slept_at=datetime.strptime(slept_at, "%Y-%m-%d %H:%M:%S%z"),
                                     awoke_at=datetime.strptime(awoke_at, "%Y-%m-%d %H:%M:%S%z"))
-        # return Sleep.objects.create(slept_at=make_aware(datetime.strptime(slept_at, "%Y-%m-%d %H:%M")),
-        #                             awoke_at=make_aware(datetime.strptime(awoke_at, "%Y-%m-%d %H:%M")))
 
     @property
     def detail_url(self) -> str:
