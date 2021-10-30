@@ -1,7 +1,4 @@
-from datetime import datetime
-
 from django.db import models
-from django.utils.timezone import make_aware
 
 from apps.aida.models.activity import Activity
 
@@ -23,18 +20,17 @@ class Workout(Activity):
 
     @staticmethod
     def create(workout_type: str, engaged_at: str) -> "Workout":
-        """Creates a workout object, stores it in the database and returns the object.
+        """Creates a Workout object, stores it in the database and returns the object.
 
         Args:
             workout_type (str): type of workout, can be <cardio> or <weight>.
-            engaged_at (str): str to format into datetime object with format YYYY-MM-DD HH:MM.
+            engaged_at (str): str to format into datetime object with format YYYY-MM-DD HH:MM:SStz.
 
         Returns:
-            Workout: the workout object that was created.
+            Workout: the Workout object that was created.
         """
 
-        aware_dt = make_aware(datetime.strptime(engaged_at, "%Y-%m-%d %H:%M"))
-        return Workout.objects.create(type=workout_type, engaged_at=aware_dt)
+        return Workout.objects.create(type=workout_type, engaged_at=engaged_at)
 
     @property
     def detail_url(self) -> str:
