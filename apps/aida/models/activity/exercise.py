@@ -24,6 +24,25 @@ class Exercise(BaseModel, ViewUrlsMixin):
     def __str__(self) -> str:
         return self.name
 
+    @staticmethod
+    def create(workout: Workout, type: str, name: str, vest_weight: float) -> "Exercise":
+        """Creates an Exercise object, stores it in the database and returns the object.
+
+        Args:
+            workout (Workout): workout object this exercise belongs to.
+            type (str): type of exercise, can be <cardio> or <weight>.
+            name (str): the name of the exercise.
+            vest_weight (float): additional weight added with a vest.
+
+        Returns:
+            Exercise: the Exercise object that was created.
+        """
+
+        return Exercise.objects.create(workout=workout,
+                                       type=type,
+                                       name=name,
+                                       vest_weight=vest_weight)
+
     @property
     def detail_url(self) -> str:
         return "aida:exercise-detail"
