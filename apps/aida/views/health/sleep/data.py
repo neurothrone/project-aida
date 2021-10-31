@@ -24,11 +24,9 @@ def csv_response(filename: str, header: list[str], data: dict) -> HttpResponse:
 
 
 def json_response(filename: str, data: dict) -> HttpResponse:
-    response = HttpResponse(
-        json.dumps(data),
-        content_type="application/json",
-        headers={"Content-Disposition": f"attachment;filename={filename}.json"})
-    return response
+    return HttpResponse(json.dumps(data),
+                        content_type="application/json",
+                        headers={"Content-Disposition": f"attachment;filename={filename}.json"})
 
 
 class ToCSV(View):
