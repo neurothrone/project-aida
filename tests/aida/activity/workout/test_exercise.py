@@ -2,9 +2,9 @@ from django.test import TestCase
 
 from apps.aida.models.activity.exercise import Exercise
 from apps.aida.models.activity.workout import Workout
-from apps.aida.tests.activity.workout import data
-from apps.aida.tests.util import get_field_max_length
-from apps.aida.tests.util import get_field_verbose_name
+from tests.aida.activity.workout import data
+from tests.util import get_field_max_length
+from tests.util import get_field_verbose_name
 
 
 class ExerciseModelTest(TestCase):

@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.aida.models.health.sleep import Sleep
-from apps.aida.tests.health.sleep import data
-from apps.aida.tests.util import get_field_verbose_name
+from tests.aida.health.sleep import data
+from tests.util import get_field_verbose_name
 
 
 class SleepModelTest(TestCase):
