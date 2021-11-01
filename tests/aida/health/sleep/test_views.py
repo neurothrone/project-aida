@@ -12,7 +12,7 @@ from apps.aida.models.health.sleep import Sleep
 class ViewsTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
-        path_to_file = settings.BASE_DIR / "data/bulk/sleep_data.json"
+        path_to_file = settings.BASE_DIR / "data/bulk/health/sleep/sleep_data.json"
         if os.path.exists(path_to_file):
             with open(path_to_file, "r") as file_in:
                 contents = json.load(file_in)
