@@ -1,14 +1,16 @@
 from django.contrib import admin
 
-from apps.aida.admin.health import HeartMetricAdmin
-from apps.aida.models.health.heartrate import HeartRate
+from apps.aida.models.health.heart import Heart
 
 
-@admin.register(HeartRate)
-class HeartRateAdmin(HeartMetricAdmin):
-    list_display = ("id", "measured_at_", "pulse", "condition")
+@admin.register(Heart)
+class HeartAdmin(admin.ModelAdmin):
+    list_display = ("id", "measured_at_", "systolic", "diastolic", "pulse", "condition")
 
-    def condition(self, obj: HeartRate) -> str:
+    def measured_at_(self, obj: Heart) -> str:
+        return obj.datetime_table_format(obj.measured_at)
+
+    def condition(self, obj: Heart) -> str:
         if obj.pulse == 0:
             return "Dead"
         elif obj.pulse < 40:

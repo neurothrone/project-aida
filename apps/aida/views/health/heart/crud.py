@@ -7,35 +7,35 @@ from django.views import generic
 from django.views import View
 from django.urls import reverse_lazy
 
-from apps.aida.models.health.heartrate import HeartRate
+from apps.aida.models.health.heart import Heart
 
 
 class List(generic.ListView):
-    model = HeartRate
-    context_object_name = "heartrates"
-    queryset = HeartRate.find_all()
-    template_name = "aida/health/heartrate/list.html"
+    model = Heart
+    context_object_name = "hearts"
+    queryset = Heart.find_all()
+    template_name = "aida/health/heart/list.html"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super(List, self).get_context_data(**kwargs)
-        context["title"] = "Heart rate data"
+        context["title"] = "Heart metrics data"
         return context
 
 
 class Create(generic.CreateView):
-    model = HeartRate
-    context_object_name = "hr"
+    model = Heart
+    context_object_name = "heart"
     template_name = "aida/generic/form.html"
-    fields = ("measured_at", "pulse")
-    success_url = reverse_lazy("aida:hr-list")
+    fields = ("measured_at", "systolic", "diastolic", "pulse")
+    success_url = reverse_lazy("aida:heart-list")
 
     def form_valid(self, form):
-        messages.success(self.request, "Heart rate data created.")
+        messages.success(self.request, "Heart data created.")
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "Failed to create Heart rate data.")
+        messages.error(self.request, "Failed to create Heart data.")
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -45,24 +45,24 @@ class Create(generic.CreateView):
 
 
 class Detail(generic.DetailView):
-    model = HeartRate
-    context_object_name = "hr"
-    template_name = "aida/health/heartrate/detail.html"
+    model = Heart
+    context_object_name = "heart"
+    template_name = "aida/health/heart/detail.html"
 
 
 class Update(generic.UpdateView):
-    model = HeartRate
-    context_object_name = "hr"
+    model = Heart
+    context_object_name = "heart"
     template_name = "aida/generic/form.html"
-    fields = ("measured_at", "pulse")
-    success_url = reverse_lazy("aida:hr-list")
+    fields = ("measured_at", "systolic", "diastolic", "pulse")
+    success_url = reverse_lazy("aida:heart-list")
 
     def form_valid(self, form):
-        messages.success(self.request, "Heart rate data updated.")
+        messages.success(self.request, "Heart data updated.")
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "Failed to update Heart rate data.")
+        messages.error(self.request, "Failed to update Heart data.")
         return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
@@ -74,23 +74,23 @@ class Update(generic.UpdateView):
 class Delete(View):
     @staticmethod
     def get(request: HttpRequest, pk: int) -> HttpResponse:
-        hr = HeartRate.find_by_id(pk)
+        heart = Heart.find_by_id(pk)
         context = {
-            "object": hr,
-            "type": "heart rate",
+            "object": heart,
+            "type": "heart",
         }
         return render(request, "aida/generic/delete.html", context)
 
     @staticmethod
     def post(request: HttpRequest, pk: int) -> HttpResponse:
-        hr = HeartRate.find_by_id(pk)
-        if hr:
-            hr.delete()
-            messages.success(request, "Heart rate data deleted.")
-            return redirect("aida:hr-list")
+        heart = Heart.find_by_id(pk)
+        if heart:
+            heart.delete()
+            messages.success(request, "Heart data deleted.")
+            return redirect("aida:heart-list")
         context = {
-            "object": hr,
-            "type": "heart rate",
+            "object": heart,
+            "type": "heart",
         }
-        messages.error(request, "Failed to delete Heart rate data.")
+        messages.error(request, "Failed to delete Heart data.")
         return render(request, "aida/generic/delete.html", context)

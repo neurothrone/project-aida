@@ -32,28 +32,14 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a class="nav-link sidebar-link" href="{% url 'aida:bp-list' %}">
-                        Blood Pressure
+                    <a class="nav-link sidebar-link" href="{% url 'aida:heart-list' %}">
+                        Heart
                     </a>
-                    <a class="px-3 fs-5 create-link" href="{% url 'aida:bp-create' %}"
-                       aria-label="Add Blood Pressure data"
+                    <a class="px-3 fs-5 create-link" href="{% url 'aida:heart-create' %}"
+                       aria-label="Add Heart metrics data"
                        data-bs-toggle="tooltip"
                        data-bs-placement="top"
-                       title="Add Blood Pressure data">
-                        <i class="bi bi-plus-circle"></i>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <div class="d-flex justify-content-between align-items-center">
-                    <a class="nav-link sidebar-link" href="{% url 'aida:hr-list' %}">
-                        Heart Rate
-                    </a>
-                    <a class="px-3 fs-5 create-link" href="{% url 'aida:hr-create' %}"
-                       aria-label="Add Pulse data"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       title="Add Heart Rate data">
+                       title="Add Heart metrics data">
                         <i class="bi bi-plus-circle"></i>
                     </a>
                 </div>

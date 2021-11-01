@@ -5,8 +5,7 @@ from apps.aida.views import IndexView
 from apps.aida.views.activity import exercise
 from apps.aida.views.activity import workout
 from apps.aida.views.activity import set
-from apps.aida.views.health import bloodpressure as bp
-from apps.aida.views.health import heartrate as hr
+import apps.aida.views.health.heart as heart
 import apps.aida.views.health.sleep as sleep
 
 app_name = "aida"
@@ -44,19 +43,12 @@ urlpatterns = [
     path("set/weight/delete/<int:pk>/", set.WeightDelete.as_view(), name="weight-set-delete"),
 
     # HEALTH
-    # - Blood pressure
-    path("health/bp/list/", bp.List.as_view(), name="bp-list"),
-    path("health/bp/create/", bp.Create.as_view(), name="bp-create"),
-    path("health/bp/detail/<int:pk>/", bp.Detail.as_view(), name="bp-detail"),
-    path("health/bp/update/<int:pk>/", bp.Update.as_view(), name="bp-update"),
-    path("health/bp/delete/<int:pk>/", bp.Delete.as_view(), name="bp-delete"),
-
-    # - Heart rate
-    path("health/hr/list/", hr.List.as_view(), name="hr-list"),
-    path("health/hr/create/", hr.Create.as_view(), name="hr-create"),
-    path("health/hr/detail/<int:pk>/", hr.Detail.as_view(), name="hr-detail"),
-    path("health/hr/update/<int:pk>/", hr.Update.as_view(), name="hr-update"),
-    path("health/hr/delete/<int:pk>/", hr.Delete.as_view(), name="hr-delete"),
+    # - Heart
+    path("health/heart/list/", heart.crud.List.as_view(), name="heart-list"),
+    path("health/heart/create/", heart.crud.Create.as_view(), name="heart-create"),
+    path("health/heart/detail/<int:pk>/", heart.crud.Detail.as_view(), name="heart-detail"),
+    path("health/heart/update/<int:pk>/", heart.crud.Update.as_view(), name="heart-update"),
+    path("health/heart/delete/<int:pk>/", heart.crud.Delete.as_view(), name="heart-delete"),
 
     # - Sleep
     path("health/sleep/from-csv/<str:filename>/", sleep.data.FromCSV.as_view(), name="sleep-from-csv"),

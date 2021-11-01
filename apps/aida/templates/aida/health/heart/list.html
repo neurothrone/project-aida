@@ -1,8 +1,8 @@
 {% extends "aida/base.html" %}
 
 {% block content %}
-    <h1 class="text-light my-3">List of Blood Pressure data</h1>
-    {% if bloodpressures %}
+    <h1 class="text-light my-3">List of Heart metrics</h1>
+    {% if hearts %}
         <div class="table-responsive">
             <table class="table table-dark table-striped table-sm">
                 <thead>
@@ -10,26 +10,28 @@
                     <th scope="col">#</th>
                     <th scope="col">Measured at</th>
                     <th scope="col">Systolic / Diastolic</th>
+                    <th scope="col">Pulse (Beats per minute)</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for bp in bloodpressures %}
+                {% for heart in hearts %}
                     <tr class="align-middle">
-                        <td>{{ bp.id }}</td>
-                        <td>{{ bp.measured_at }}</td>
-                        <td>{{ bp.systolic }} / {{ bp.diastolic }}</td>
+                        <td>{{ heart.id }}</td>
+                        <td>{{ heart.measured_at }}</td>
+                        <td>{{ heart.systolic }} / {{ heart.diastolic }}</td>
+                        <td>{{ heart.pulse }}</td>
                         <td>STATUS</td>
                         <td>
                             <a class="btn btn-outline-info"
-                               href="{{ bp.get_absolute_url }}">
+                               href="{{ heart.get_absolute_url }}">
                                 <i class="bi bi-eye"></i></a>
                             <a class="btn btn-outline-warning"
-                               href="{{ bp.get_update_url }}">
+                               href="{{ heart.get_update_url }}">
                                 <i class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-outline-danger"
-                               href="{{ bp.get_delete_url }}">
+                               href="{{ heart.get_delete_url }}">
                                 <i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
@@ -38,6 +40,6 @@
             </table>
         </div>
     {% else %}
-        <p class="text-light">No blood pressure data available.</p>
+        <p class="text-light">No heart data available.</p>
     {% endif %}
 {% endblock %}

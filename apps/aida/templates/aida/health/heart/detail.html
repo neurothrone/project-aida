@@ -1,0 +1,15 @@
+{% extends "aida/base.html" %}
+
+{% block content %}
+    <h1 class="text-light my-3">Heart metrics Detail</h1>
+    <div class="text-light">
+        <p><span class="text-primary">ID:</span> {{ heart.id }}</p>
+        <p><span class="text-primary">Measured at:</span> {{ heart.measured_at }}</p>
+        <p><span class="text-primary">Systolic:</span> {{ heart.systolic }}</p>
+        <p><span class="text-primary">Diastolic:</span> {{ heart.diastolic }}</p>
+        <p><span class="text-primary">Pulse:</span> {{ heart.pulse }}</p>
+        <p><span class="text-primary">Status:</span> 'STATUS'</p>
+    </div>
+
+    <a class="btn btn-outline-secondary" href="{{ request.META.HTTP_REFERER }}">Back</a>
+{% endblock %}
