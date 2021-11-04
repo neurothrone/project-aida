@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "https://zn-aida.herokuapp.com/",
 ]
 
 # Application definition
@@ -40,13 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party
-    "rest_framework",
     "crispy_forms",
+    "rest_framework",
 
     # custom apps
-    "apps.main.apps.MainConfig",
-    "apps.aida.apps.AidaConfig",
-
+    "aida.apps.AidaConfig",
+    "main.apps.MainConfig",
     "api.apps.ApiConfig",
 ]
 
@@ -130,11 +130,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     "static",
-    BASE_DIR / "apps/aida/static"
+    BASE_DIR / "static"
 ]
 
 if not DEBUG:
-    STATIC_ROOT = ...
+    STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

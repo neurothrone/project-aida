@@ -7,9 +7,8 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # custom
-    path("", include("apps.main.urls")),
-    path("aida/", include("apps.aida.urls")),
+    path("", include("main.urls")),
+    path("aida/", include("aida.urls")),
     path("api/", include("api.urls")),
 ]
 
