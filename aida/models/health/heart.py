@@ -79,5 +79,5 @@ class Heart(Health):
         return {
             "labels": dates,
             "chart_data": pulses,
-            "chart_label": "Pulse per date"
+            "chart_label": "Pulse vs Date"
         }
