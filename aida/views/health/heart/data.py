@@ -16,7 +16,6 @@ class FromCSV(View):
     @staticmethod
     def get(request: HttpRequest, filename: str) -> HttpResponse:
         contents = get_data_from_csv(filename)
-
         if data := contents[1:]:  # skip headers
             Heart.populate_db_from_csv(data)
             messages.success(request, "Heart data successfully uploaded.")
@@ -30,7 +29,6 @@ class FromJSON(View):
     @staticmethod
     def get(request: HttpRequest, filename: str) -> HttpResponse:
         contents = get_data_from_json(filename)
-
         if data := contents.get("data", None):
             try:
                 Heart.populate_db_from_json(data)
