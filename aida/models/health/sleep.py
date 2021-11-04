@@ -90,8 +90,8 @@ class Sleep(Health):
     def all_to_chart_data(cls) -> dict:
         queryset = cls.objects.all().order_by("awoke_at")
 
-        dates = [datum.awoke_at.date() for datum in queryset]
-        durations = [round(datum.duration / 60 / 60, 1) for datum in queryset]
+        dates = [sleep.awoke_at.date() for sleep in queryset]
+        durations = [round(sleep.duration / 60 / 60, 1) for sleep in queryset]
 
         return {
             "labels": dates,
