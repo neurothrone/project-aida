@@ -1,0 +1,15 @@
+{% extends "aida/base.html" %}
+
+{% block content %}
+    <h1 class="text-light my-3">{{ action }}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="text-light">
+            <table>
+                {{ form.as_table }}
+            </table>
+        </div>
+        <button class="btn btn-outline-success" type="submit">{{ action }}</button>
+        <a class="btn btn-secondary ms-2" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+    </form>
+{% endblock %}
