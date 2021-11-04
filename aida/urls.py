@@ -2,9 +2,9 @@ from django.urls import path
 
 from aida.views import file
 from aida.views import IndexView
+from aida.views.activity import workout
 from aida.views.activity.workout import exercise
 from aida.views.activity.workout import set
-from aida.views.activity import workout as workout
 from aida.views.health import heart as heart
 from aida.views.health import sleep as sleep
 
