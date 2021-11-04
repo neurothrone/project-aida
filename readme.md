@@ -10,10 +10,9 @@ Its purpose is to allow a user to store and track a history of measurable metric
 
 The metrics to focus primarily on at first subdivided into the following categories:
 - Activity
-  - Workout performance
+  - Workouts
 - Health
-  - Blood pressure
-  - Heart rate
+  - Heart
   - Sleep
   - Body weight
 - Interests (Undetermined)
@@ -24,10 +23,9 @@ The metrics to focus primarily on at first subdivided into the following categor
 ## Roadmap
 - Web interface
   - Activity
-    - [x] Workout
+    - [x] Workouts
   - Health
-    - [x] Blood pressure
-    - [x] Heart rate
+    - [x] Heart
     - [x] Sleep
     - [ ] Body weight
 - [ ] Simple visualizations for training and sleep data
