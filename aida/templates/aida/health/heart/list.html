@@ -10,7 +10,7 @@
 
     <!-- CANVAS -->
     {% if hearts %}
-        <canvas class="my-4 w-100 bg-light rounded" id="sleepGraph" width="900" height="380"></canvas>
+        <canvas class="my-4 w-100 bg-light rounded" id="heartGraph" width="900" height="380"></canvas>
     {% else %}
         <p class="text-light">No heart data available.</p>
     {% endif %}
@@ -24,7 +24,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Measured at</th>
                     <th scope="col">Systolic / Diastolic</th>
-                    <th scope="col">Pulse (Beats per minute)</th>
+                    <th scope="col">Pulse</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -53,5 +53,14 @@
                 </tbody>
             </table>
         </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <!-- Chart.js core JS --->
+    <script src="{% static 'libs/chart.js/dist/chart.js' %}"></script>
+    <!-- Custom JS -->
+    {% if hearts %}
+        <script src="{% static 'js/heart.js' %}" type="module"></script>
     {% endif %}
 {% endblock %}

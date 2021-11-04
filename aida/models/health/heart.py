@@ -67,3 +67,16 @@ class Heart(Health):
         return "aida:heart-delete"
 
     # endregion ViewUrlsMixin
+
+    @classmethod
+    def all_to_chart_data(cls) -> dict:
+        queryset = cls.objects.all().order_by("measured_at")
+
+        dates = [heart.measured_at.date() for heart in queryset]
+        pulses = [heart.pulse for heart in queryset]
+
+        return {
+            "labels": dates,
+            "chart_data": pulses,
+            "chart_label": "Pulse per date"
+        }
