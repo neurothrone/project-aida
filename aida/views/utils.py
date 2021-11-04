@@ -1,6 +1,7 @@
 import csv
 import json
 
+from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 
@@ -25,3 +26,18 @@ def to_json_response(filename: str, data: dict) -> HttpResponse:
     return HttpResponse(json.dumps(data),
                         content_type="application/json",
                         headers={"Content-Disposition": f"attachment;filename={filename}.json"})
+
+
+def get_data_from_csv(filename: str) -> list:
+    with open(settings.MEDIA_ROOT / filename, "r") as file_in:
+        reader = csv.reader(file_in, delimiter=",")
+        contents = [line for line in reader]
+    delete_file_on_server(filename)
+    return contents
+
+
+def get_data_from_json(filename: str) -> dict:
+    with open(settings.MEDIA_ROOT / filename, "r") as file_in:
+        contents = json.load(file_in)
+    delete_file_on_server(filename)
+    return contents
