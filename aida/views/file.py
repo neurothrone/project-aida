@@ -10,14 +10,14 @@ from django.views import View
 class Import(View):
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
-        return render(request, "aida/data/import.html")
+        return render(request, "aida/file/import.html")
 
     @staticmethod
     def post(request: HttpRequest) -> HttpResponse:
         file = request.FILES.get("data_file", None)
         if not file:
             messages.error(request, "Error! Something went wrong when uploading file.")
-            return render(request, "aida/data/import.html")
+            return render(request, "aida/file/import.html")
 
         fs = FileSystemStorage()
         filename = fs.save(file.name, file)
@@ -29,4 +29,4 @@ class Import(View):
             return redirect("aida:sleep-from-json", filename=filename)
 
         messages.error(request, "Error! File type not supported.")
-        return render(request, "aida/data/import.html")
+        return render(request, "aida/file/import.html")

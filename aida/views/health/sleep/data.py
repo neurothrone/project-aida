@@ -74,7 +74,7 @@ class FromJSON(View):
                 messages.error(request, "Failed to decode JSON.")
         else:
             messages.error(request, "Failed to import sleep data.")
-        return render(request, "aida/data/import.html")
+        return render(request, "aida/file/import.html")
 
 
 def delete_file(filename: str) -> None:
