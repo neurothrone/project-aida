@@ -5,9 +5,10 @@ from django.db import models
 
 from aida.models.health import Health
 from shared.models.urls import ViewUrlsMixin
+from shared.models.data import DataConvertableMixin
 
 
-class Sleep(Health, ViewUrlsMixin):
+class Sleep(Health, ViewUrlsMixin, DataConvertableMixin):
     slept_at = models.DateTimeField(help_text="Enter the date and time you went to sleep")
     awoke_at = models.DateTimeField(help_text="Enter the date and time you woke up at")
     duration = models.PositiveIntegerField(default=0, help_text="Duration of sleep")
@@ -75,17 +76,14 @@ class Sleep(Health, ViewUrlsMixin):
             "chart_label": "Hours slept"
         }
 
-    # TODO: all sleep data in current year
-    # TODO: all sleep data in current month
-
-    @classmethod
-    def all_to_csv(cls) -> tuple[list, dict]:
+    @staticmethod
+    def db_data_to_csv():
         header = ["slept_at", "awoke_at"]
-        return header, cls.all_to_json()["data"]
+        return header, Sleep.db_data_to_json()["data"]
 
-    @classmethod
-    def all_to_json(cls) -> dict:
-        sleeps = cls.find_all()
+    @staticmethod
+    def db_data_to_json():
+        sleeps = Sleep.find_all()
         content = {
             "category": "sleep",
             "timezone": settings.TIME_ZONE,
@@ -94,15 +92,3 @@ class Sleep(Health, ViewUrlsMixin):
         for sleep in sleeps:
             content["data"].append({"slept_at": str(sleep.slept_at), "awoke_at": str(sleep.awoke_at)})
         return content
-
-    @classmethod
-    def populate_from_csv(cls, data: list[list[str]]) -> None:
-        cls.objects.all().delete()
-        for datum in data:
-            cls.create(*datum)
-
-    @classmethod
-    def populate_from_json(cls, data: list[dict]) -> None:
-        cls.objects.all().delete()
-        for datum in data:
-            cls.create(**datum)
