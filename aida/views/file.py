@@ -8,13 +8,24 @@ from django.views import View
 
 
 class Import(View):
+    REDIRECT_URLS = {
+        "heart": {
+            "csv": "aida:heart-from-csv",
+            "json": "aida:heart-from-json",
+        },
+        "sleep": {
+            "csv": "aida:sleep-from-csv",
+            "json": "aida:sleep-from-json"
+        }
+    }
+
     @staticmethod
     def get(request: HttpRequest) -> HttpResponse:
         return render(request, "aida/file/import.html")
 
     @staticmethod
     def post(request: HttpRequest) -> HttpResponse:
-        file = request.FILES.get("data_file", None)
+        file = request.FILES.get("file", None)
         if not file:
             messages.error(request, "Error! Something went wrong when uploading file.")
             return render(request, "aida/file/import.html")
@@ -22,11 +33,14 @@ class Import(View):
         fs = FileSystemStorage()
         filename = fs.save(file.name, file)
 
-        if filename.lower().endswith(".csv"):
-            return redirect("aida:sleep-from-csv", filename=filename)
+        category, extension = request.POST.get("category", ""), request.POST.get("extension", "")
 
-        if filename.lower().endswith(".json"):
-            return redirect("aida:sleep-from-json", filename=filename)
+        if not filename.lower().endswith(f".{extension}"):
+            messages.error(request, "Error! Selected extension does not match file extension.")
+            return render(request, "aida/file/import.html")
 
-        messages.error(request, "Error! File type not supported.")
+        if url := Import.REDIRECT_URLS.get(category, {}).get(extension):
+            return redirect(url, filename)
+
+        messages.error(request, "Error! Category or file type not supported.")
         return render(request, "aida/file/import.html")
