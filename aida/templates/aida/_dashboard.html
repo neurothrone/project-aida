@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom text-light">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary disabled">Month</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary disabled">Year</button>
+        </div>
+
+        <a class="btn btn-sm btn-outline-secondary me-2"
+           href="{% url 'aida:data-import' %}">
+            Import
+        </a>
+
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                    id="dropdown-export-menu"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                Export to
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="dropdown-export-menu">
+                <li><a class="dropdown-item" href="{{ csv_url }}">CSV</a></li>
+                <li><a class="dropdown-item" href="{{ json_url }}">JSON</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

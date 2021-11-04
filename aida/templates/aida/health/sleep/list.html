@@ -1,43 +1,22 @@
 {% extends "aida/base.html" %}
 {% load static %}
 
+{% block title %}AIDA | Sleep{% endblock %}
 {% block content %}
     <!--DASHBOARD-->
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom text-light">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Month</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Year</button>
-            </div>
-
-            <a class="btn btn-sm btn-outline-secondary me-2"
-               href="{% url 'aida:data-import' %}">
-                Import
-            </a>
-
-            <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                        id="dropdown-export-menu"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    Export to
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark"
-                    aria-labelledby="dropdown-export-menu">
-                    <li><a class="dropdown-item" href="{% url 'aida:sleep-to-csv' %}">CSV</a></li>
-                    <li><a class="dropdown-item" href="{% url 'aida:sleep-to-json' %}">JSON</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
+    {% url 'aida:sleep-to-csv' as csv_url %}
+    {% url 'aida:sleep-to-json' as json_url %}
+    {% include "aida/_dashboard.html" with csv_url=csv_url json_url=json_url %}
 
     <!-- CANVAS -->
-    <canvas class="my-4 w-100 bg-light rounded" id="sleepGraph" width="900" height="380"></canvas>
-
-
-    <h1 class="text-light my-3">Sleep data</h1>
     {% if sleeps %}
+        <canvas class="my-4 w-100 bg-light rounded" id="sleepGraph" width="900" height="380"></canvas>
+    {% else %}
+        <p class="text-light">No Sleep data available.</p>
+    {% endif %}
+
+    {% if sleeps %}
+        <h1 class="h2 text-light my-3">Sleep data</h1>
         <div class="table-responsive">
             <table class="table table-dark table-striped table-sm">
                 <thead>
@@ -81,8 +60,6 @@
                 </tbody>
             </table>
         </div>
-    {% else %}
-        <p class="text-light">No Sleep data available.</p>
     {% endif %}
 {% endblock %}
 
@@ -90,5 +67,7 @@
     <!-- Chart.js core JS --->
     <script src="{% static 'libs/chart.js/dist/chart.js' %}"></script>
     <!-- Custom JS -->
-    <script src="{% static 'js/sleep.js' %}" type="module"></script>
+    {% if sleeps %}
+        <script src="{% static 'js/sleep.js' %}" type="module"></script>
+    {% endif %}
 {% endblock %}
