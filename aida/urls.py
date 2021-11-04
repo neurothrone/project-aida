@@ -42,6 +42,14 @@ urlpatterns = [
 
     # HEALTH
     # - Heart
+    #   - Data
+    path("health/heart/from-csv/<str:filename>/", heart.data.FromCSV.as_view(),
+         name="heart-from-csv"),
+    path("health/heart/from-json/<str:filename>/", heart.data.FromJSON.as_view(),
+         name="heart-from-json"),
+    path("health/heart/to-csv/", heart.data.ToCSV.as_view(), name="heart-to-csv"),
+    path("health/heart/to-json/", heart.data.ToJSON.as_view(), name="heart-to-json"),
+    #   - CRUD
     path("health/heart/list/", heart.crud.List.as_view(), name="heart-list"),
     path("health/heart/create/", heart.crud.Create.as_view(), name="heart-create"),
     path("health/heart/detail/<int:pk>/", heart.crud.Detail.as_view(), name="heart-detail"),
@@ -49,12 +57,14 @@ urlpatterns = [
     path("health/heart/delete/<int:pk>/", heart.crud.Delete.as_view(), name="heart-delete"),
 
     # - Sleep
+    #   - Data
     path("health/sleep/from-csv/<str:filename>/", sleep.data.FromCSV.as_view(),
          name="sleep-from-csv"),
     path("health/sleep/from-json/<str:filename>/", sleep.data.FromJSON.as_view(),
          name="sleep-from-json"),
     path("health/sleep/to-csv/", sleep.data.ToCSV.as_view(), name="sleep-to-csv"),
     path("health/sleep/to-json/", sleep.data.ToJSON.as_view(), name="sleep-to-json"),
+    #   - CRUD
     path("health/sleep/list/", sleep.crud.List.as_view(), name="sleep-list"),
     path("health/sleep/create/", sleep.crud.Create.as_view(), name="sleep-create"),
     path("health/sleep/detail/<int:pk>/", sleep.crud.Detail.as_view(), name="sleep-detail"),
