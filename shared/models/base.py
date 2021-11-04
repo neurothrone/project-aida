@@ -38,6 +38,10 @@ class BaseModel(models.Model):
         return datetime.strftime(cls.to_local_time(dt), "%b. %d %Y, %H:%M")
 
     @classmethod
+    def date_table_format(cls, dt: datetime):
+        return datetime.strftime(cls.to_local_time(dt), "%b. %d %Y")
+
+    @classmethod
     def to_local_time(cls, dt: datetime):
         aware_dt = make_aware(datetime.strptime(datetime.strftime(dt, "%Y-%m-%d %H:%M"), "%Y-%m-%d %H:%M"))
         time_difference = dt - aware_dt

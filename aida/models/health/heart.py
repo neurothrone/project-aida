@@ -76,7 +76,7 @@ class Heart(Health):
     def all_to_chart_data(cls) -> dict:
         queryset = cls.objects.all().order_by("measured_at")
 
-        dates = [heart.measured_at.date() for heart in queryset]
+        dates = [heart.date_table_format(heart.measured_at) for heart in queryset]
         pulses = [heart.pulse for heart in queryset]
 
         return {
