@@ -20,6 +20,9 @@ class Heart(Health):
     def __str__(self) -> str:
         return f"{self.measured_at.date()} |{self.systolic / self.diastolic} | {self.pulse}"
 
+    def measured_at_table_format(self) -> str:
+        return self.datetime_table_format(self.measured_at)
+
     # region DataConvertableMixin
 
     @staticmethod

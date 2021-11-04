@@ -10,3 +10,6 @@ class Activity(BaseModel, ViewUrlsMixin):
 
     class Meta:
         abstract = True
+
+    def engaged_at_table_format(self) -> str:
+        return self.datetime_table_format(self.engaged_at)
