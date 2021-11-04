@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 from aida.models.health import Health
+from shared.utils import dt
 
 
 class Heart(Health):
@@ -23,7 +24,7 @@ class Heart(Health):
 
     @staticmethod
     def create(measured_at: str, systolic: int, diastolic: int, pulse: int) -> "Heart":
-        return Heart.objects.create(measured_at=datetime.strptime(measured_at, "%Y-%m-%d %H:%M:%S%z"),
+        return Heart.objects.create(measured_at=dt.parse_datetime(measured_at),
                                     systolic=systolic,
                                     diastolic=diastolic,
                                     pulse=pulse)

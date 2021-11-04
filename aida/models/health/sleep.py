@@ -1,9 +1,8 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.db import models
 
 from aida.models.health import Health
+from shared.utils import dt
 
 
 class Sleep(Health):
@@ -48,8 +47,7 @@ class Sleep(Health):
             Sleep: the Sleep object that was created.
         """
 
-        return Sleep.objects.create(slept_at=datetime.strptime(slept_at, "%Y-%m-%d %H:%M:%S%z"),
-                                    awoke_at=datetime.strptime(awoke_at, "%Y-%m-%d %H:%M:%S%z"))
+        return Sleep.objects.create(slept_at=dt.parse_datetime(slept_at), awoke_at=dt.parse_datetime(awoke_at))
 
     @staticmethod
     def db_data_to_csv():
