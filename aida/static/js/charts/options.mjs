@@ -5,7 +5,6 @@ function getBarGraphOptions(title, xLabel, yLabel) {
                 display: true,
                 position: "top",
                 labels: {
-                    color: 'rgba(150, 0, 255, 1)',
                     font: {
                         size: 14,
                         weight: 800
@@ -15,7 +14,7 @@ function getBarGraphOptions(title, xLabel, yLabel) {
                     display: true,
                     text: title,
                     padding: "10",
-                    color: 'rgba(150, 0, 255, 1)',
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
@@ -33,7 +32,7 @@ function getBarGraphOptions(title, xLabel, yLabel) {
                     display: true,
                     text: xLabel,
                     align: "center",
-                    color: 'rgba(150, 0, 255, 1)',
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
@@ -44,21 +43,14 @@ function getBarGraphOptions(title, xLabel, yLabel) {
                     ticks: {
                         beginAtZero: true,
                     }
-                },
-                ticks: {
-                    color: "black",
-                    font: {
-                        size: 14,
-                        weight: 800
-                    }
                 }
             },
             yAxes: {
                 title: {
                     display: true,
                     text: yLabel,
-                    align: "center",  // start, center, end
-                    color: 'rgba(150, 0, 255, 1)',
+                    align: "center",
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
@@ -79,11 +71,18 @@ function getLineGraphOptions(title, xLabel, yLabel) {
             legend: {
                 display: true,
                 position: "top",
+                labels: {
+                    font: {
+                        color: "black",
+                        size: 14,
+                        weight: 800
+                    }
+                },
                 title: {
                     display: true,
                     text: title,
                     padding: "10",
-                    color: 'rgba(150, 0, 255, 1)',
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
@@ -101,7 +100,7 @@ function getLineGraphOptions(title, xLabel, yLabel) {
                     display: true,
                     text: xLabel,
                     align: "center",
-                    color: 'rgba(150, 0, 255, 1)',
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
@@ -119,7 +118,7 @@ function getLineGraphOptions(title, xLabel, yLabel) {
                     display: true,
                     text: yLabel,
                     align: "center",  // start, center, end
-                    color: 'rgba(150, 0, 255, 1)',
+                    color: "rgba(150, 0, 255, 1)",
                     font: {
                         family: "sans-serif",
                         style: "normal",
