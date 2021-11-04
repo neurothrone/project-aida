@@ -94,5 +94,5 @@ class Sleep(Health):
         return {
             "labels": dates,
             "chart_data": durations,
-            "chart_label": "Hours slept"
+            "chart_label": "Hours slept vs Date"
         }
