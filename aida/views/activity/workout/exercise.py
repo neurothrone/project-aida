@@ -14,7 +14,7 @@ class List(generic.ListView):
     model = Exercise
     context_object_name = "exercise"
     queryset = Exercise.find_all()
-    template_name = "aida/activity/exercise/list.html"
+    template_name = "aida/activity/workout/exercise/list.html"
 
 
 class Create(generic.CreateView):
@@ -47,7 +47,7 @@ class Create(generic.CreateView):
 class Detail(generic.DetailView):
     model = Exercise
     context_object_name = "exercise"
-    template_name = "aida/activity/exercise/detail.html"
+    template_name = "aida/activity/workout/exercise/detail.html"
 
 
 class Update(generic.UpdateView):

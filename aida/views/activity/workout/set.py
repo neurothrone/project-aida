@@ -63,7 +63,7 @@ class CardioCreate(SetCreate):
 class CardioDetail(generic.DetailView):
     model = CardioSet
     context_object_name = "set"
-    template_name = "aida/activity/set/cardio_detail.html"
+    template_name = "aida/activity/workout/set/cardio_detail.html"
 
 
 class CardioUpdate(SetUpdate):
@@ -110,7 +110,7 @@ class WeightCreate(SetCreate):
 class WeightDetail(generic.DetailView):
     model = WeightSet
     context_object_name = "set"
-    template_name = "aida/activity/set/weight_detail.html"
+    template_name = "aida/activity/workout/set/weight_detail.html"
 
 
 class WeightUpdate(SetUpdate):
