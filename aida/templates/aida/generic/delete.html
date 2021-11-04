@@ -1,7 +1,7 @@
 {% extends "aida/base.html" %}
 
 {% block content %}
-    <h1 class="text-light my-3">Delete {{ type|title }} data</h1>
+    <h1 class="h2 text-light my-3">Delete {{ type|title }} data</h1>
     <!-- object will use __str__() if defined -->
     <p class="text-light">Are you sure you want to delete the {{ type }} data: <strong>{{ object }}</strong>?</p>
     <form action="" method="POST">
