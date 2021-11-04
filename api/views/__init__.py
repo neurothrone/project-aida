@@ -7,6 +7,9 @@ class RoutesView(APIView):
     @staticmethod
     def get(request: Request, *args, **kwargs) -> Response:
         routes = [
+            {"GET": "/api/health/heart/"},
+            {"GET": "/api/health/heart/pk/"},
+            {"GET": "/api/health/heart/chart/"},
             {"GET": "/api/health/sleep/"},
             {"GET": "/api/health/sleep/pk/"},
             {"GET": "/api/health/sleep/chart/"},
