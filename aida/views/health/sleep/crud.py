@@ -8,6 +8,7 @@ from django.views import View
 from django.urls import reverse_lazy
 
 from aida.models.health.sleep import Sleep
+from aida.forms.health.sleep import SleepForm
 
 
 class List(generic.ListView):
@@ -27,7 +28,8 @@ class Create(generic.CreateView):
     model = Sleep
     context_object_name = "sleep"
     template_name = "aida/generic/form.html"
-    fields = ("slept_at", "awoke_at")
+    # fields = ("slept_at", "awoke_at")
+    form_class = SleepForm
     success_url = reverse_lazy("aida:sleep-list")
 
     def form_valid(self, form):
