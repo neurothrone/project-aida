@@ -56,7 +56,8 @@ class Update(generic.UpdateView):
     model = Sleep
     context_object_name = "sleep"
     template_name = "aida/generic/form.html"
-    fields = ("slept_at", "awoke_at")
+    # fields = ("slept_at", "awoke_at")
+    form_class = SleepForm
     success_url = reverse_lazy("aida:sleep-list")
 
     def form_valid(self, form):
