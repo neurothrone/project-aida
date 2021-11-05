@@ -16,7 +16,7 @@ class ViewsTestCase(TestCase):
         if os.path.exists(path_to_file):
             with open(path_to_file, "r") as file_in:
                 contents = json.load(file_in)
-            Sleep.populate_from_json(contents["data"])
+            Sleep.populate_db_from_json(contents["data"])
 
     def test_sleep_list_view_get_request(self):
         response = self.client.get("http://127.0.0.1:8000/aida/health/sleep/list/")
