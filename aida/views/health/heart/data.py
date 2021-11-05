@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.http import HttpRequest
 from django.shortcuts import redirect
-from django.shortcuts import render
 from django.views import View
 
 from aida.models.health.heart import Heart
@@ -22,7 +21,7 @@ class FromCSV(View):
                 messages.success(request, "Heart data successfully uploaded.")
                 return redirect("aida:heart-list")
             except TypeError:
-                messages.error(request, "Error! Incorrect format in data file for Heart data.")
+                messages.error(request, "Error! Incorrect format in csv data file for Heart data.")
         else:
             messages.error(request, "Failed to read data from CSV.")
         return redirect("aida:data-import")
@@ -39,9 +38,11 @@ class FromJSON(View):
                 return redirect("aida:heart-list")
             except ValueError:
                 messages.error(request, "Failed to decode JSON.")
+            except TypeError:
+                messages.error(request, "Error! Incorrect format in json data file for Heart data.")
         else:
             messages.error(request, "Failed to import heart data.")
-        return render(request, "aida/file/import.html")
+        return redirect("aida:data-import")
 
 
 class ToCSV(View):
