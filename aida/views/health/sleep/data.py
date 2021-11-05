@@ -17,11 +17,14 @@ class FromCSV(View):
     def get(request: HttpRequest, filename: str) -> HttpResponse:
         contents = get_data_from_csv(filename)
         if data := contents[1:]:  # skip headers
-            Sleep.populate_db_from_csv(data)
-            messages.success(request, "Sleep data successfully uploaded.")
-            return redirect("aida:sleep-list")
-
-        messages.error(request, "Failed to read data from CSV.")
+            try:
+                Sleep.populate_db_from_csv(data)
+                messages.success(request, "Sleep data successfully uploaded.")
+                return redirect("aida:sleep-list")
+            except TypeError:
+                messages.error(request, "Error! Incorrect format in data file for Sleep data.")
+        else:
+            messages.error(request, "Failed to read data from CSV.")
         return redirect("aida:data-import")
 
 

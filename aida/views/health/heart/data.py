@@ -17,11 +17,14 @@ class FromCSV(View):
     def get(request: HttpRequest, filename: str) -> HttpResponse:
         contents = get_data_from_csv(filename)
         if data := contents[1:]:  # skip headers
-            Heart.populate_db_from_csv(data)
-            messages.success(request, "Heart data successfully uploaded.")
-            return redirect("aida:heart-list")
-
-        messages.error(request, "Failed to read data from CSV.")
+            try:
+                Heart.populate_db_from_csv(data)
+                messages.success(request, "Heart data successfully uploaded.")
+                return redirect("aida:heart-list")
+            except TypeError:
+                messages.error(request, "Error! Incorrect format in data file for Heart data.")
+        else:
+            messages.error(request, "Failed to read data from CSV.")
         return redirect("aida:data-import")
 
 
