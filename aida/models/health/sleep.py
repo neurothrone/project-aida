@@ -6,8 +6,8 @@ from shared.utils import dt
 
 
 class Sleep(Health):
-    slept_at = models.DateTimeField(help_text="Enter the date and time you went to sleep")
-    awoke_at = models.DateTimeField(help_text="Enter the date and time you woke up at")
+    slept_at = models.DateTimeField(help_text="Enter the date and time you went to sleep, format: YYYY-MM-DD HH:MM")
+    awoke_at = models.DateTimeField(help_text="Enter the date and time you woke up at, format: YYYY-MM-DD HH:MM")
     duration = models.PositiveIntegerField(default=0, help_text="Duration of sleep")
 
     class Meta:
