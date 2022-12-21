@@ -1,4 +1,4 @@
-# Fundamental Python Programming Project
+# Project AIDA
 This is my project work on the course **Fundamental Python Programming** in the programme [Python Developer specializing in AI][education] at [Teknikhögskolan][teknikhogskolan] Gothenburg.
 
 [education]: https://teknikhogskolan.se/utbildningar/pythonutvecklare-ai/
